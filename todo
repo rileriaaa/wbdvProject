@@ -1,0 +1,45 @@
+fix unaligned icons
+add padding to pages
+
+pages done
+ - item/[id]
+ - browse
+
+ - cart
+ - checkout 
+ - order/confirm
+
+ - login
+ - signup
+
+ - 404 page
+
+ - messages/[id]
+
+ - landing page
+
+pages needed
+ - /seller/[id]
+
+ - /orders/[id]
+
+ - /messages
+
+ - /notifications
+
+ - /profile
+ - /profile/orders
+ - /profile/settings
+
+ - /review/[id]
+
+ - /seller/listings
+ - /seller/listings/new
+ - /seller/orders
+ 
+ - /about
+ - /faqs
+ - /contact
+ - /terms
+ - /privacy
+ 
