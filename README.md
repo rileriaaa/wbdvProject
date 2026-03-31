@@ -1,3 +1,5 @@
 ## wbdv111 final project
-<br>
-developed & designed by [rIleria](https://www.rileriaaa.me/ 'rIleriaaa.me')
+
+#### wahahahahahahahaah
+
+#### developed & designed by [@rileriaaa](https://www.rileriaaa.me/ 'rIleriaaa')
