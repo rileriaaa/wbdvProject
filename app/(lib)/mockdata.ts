@@ -1,3 +1,5 @@
+import type { Notification } from '@/types'
+
 // ── CATEGORIES ────────────────────────────────────────────────────────────
 export const CATEGORIES = [
   { id: 'all',       label: 'All Items',      icon: '📦' },
@@ -225,4 +227,4 @@ export const MOCK_NOTIFICATIONS = [
   { id: 'n2', type: 'Message',      title: 'New message from Maria Santos', body: 'Hi! Is the calculus book still available?', time: '4h ago', read: false },
   { id: 'n3', type: 'Promotion',    title: 'Flash Sale — Up to 50% off Textbooks', body: 'Limited time only. Browse now.', time: '1d ago', read: true },
   { id: 'n4', type: 'Review',       title: 'Leave a review for your order', body: 'How was your purchase of Calculus 8th Ed?', time: '2d ago', read: true },
-]
+] as Notification[]
