@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { setUser } from '../(lib)/storage'
+import { setUser } from '../../(lib)/storage'
 // import { MOCK_USER } from '../(lib)/mockdata'
-import type { User, Product, Category } from '../../types/index'
+import type { User, Product, Category } from '../../../types/index'
 
 export const MOCK_USER = {
     id: 'u1',

@@ -1,3 +1,5 @@
+
+# TODO
 fix unaligned icons
 add padding to pages
 
@@ -18,24 +20,23 @@ pages done
 
  - landing page
 
-pages needed
- - /seller/[id]
+  - /seller/[id]
 
  - /orders/[id]
 
  - /messages
+ - /messages/id
 
  - /notifications
 
  - /profile
  - /profile/orders
  - /profile/settings
+ - /profile/seller/listings
+ - /profile/seller/listings/new
+ - /profile/seller/orders
 
  - /review/[id]
-
- - /seller/listings
- - /seller/listings/new
- - /seller/orders
  
  - /about
  - /faqs
@@ -43,3 +44,5 @@ pages needed
  - /terms
  - /privacy
  
+
+pages needed

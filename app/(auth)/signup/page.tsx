@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { setUser } from '../(lib)/storage'
+import { setUser } from '../../(lib)/storage'
 import type { User, UserRole } from '@/types'
 
 interface FormData {
