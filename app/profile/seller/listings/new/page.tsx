@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { CategoryId, Condition } from '@/types'
 
@@ -29,7 +29,7 @@ const CATEGORIES: { id: CategoryId; label: string }[] = [
 
 const CONDITIONS: Condition[] = ['Like New', 'Good', 'Fair']
 
-export default function AddEditProductPage() {
+function AddEditProductContent() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const isEdit = !!searchParams.get('edit')
@@ -81,6 +81,7 @@ export default function AddEditProductPage() {
                 {isEdit ? 'Edit Listing' : 'Add New Listing'}
             </h1>
 
+            {/* Product Information */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
                     <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Product Information</h2>
@@ -124,6 +125,7 @@ export default function AddEditProductPage() {
                 </div>
             </div>
 
+            {/* Photos */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
                     <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Product Photos</h2>
@@ -145,6 +147,7 @@ export default function AddEditProductPage() {
                 </div>
             </div>
 
+            {/* Pricing & Stock */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
                     <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Pricing &amp; Stock</h2>
@@ -186,6 +189,7 @@ export default function AddEditProductPage() {
                 </div>
             </div>
 
+            {/* Actions */}
             <div className="flex items-center gap-3 flex-wrap">
                 <button onClick={handlePublish} disabled={loading} className="btn-primary text-[14px] h-[48px] px-8" style={{ opacity: loading ? 0.7 : 1 }}>
                     {loading ? 'Publishing…' : 'Publish Listing →'}
@@ -195,5 +199,18 @@ export default function AddEditProductPage() {
                 </button>
             </div>
         </div>
+    )
+}
+
+// ── Suspense wrapper — required for useSearchParams() ────────────────────
+export default function AddEditProductPage() {
+    return (
+        <Suspense fallback={
+            <div className="section-sd py-20 text-center">
+                <p className="text-[14px]" style={{ color: 'var(--text-secondary)' }}>Loading…</p>
+            </div>
+        }>
+            <AddEditProductContent />
+        </Suspense>
     )
 }

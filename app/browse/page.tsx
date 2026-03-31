@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import ProductCard from '../(comps)/productCard'
 import { PRODUCTS, CATEGORIES } from '../(lib)/mockdata'
-import type { Product, Category, CategoryId } from '@/types'
+import type { Product, Category } from '@/types'
 
 const SORT_OPTIONS = [
     { value: 'newest', label: 'Newest First' },
@@ -16,7 +16,8 @@ const SORT_OPTIONS = [
 const CONDITIONS = ['Like New', 'Good', 'Fair']
 const PAGE_SIZE = 6
 
-export default function BrowsePage() {
+// ── Inner component — safe to use useSearchParams() here ─────────────────
+function BrowseContent() {
     const router = useRouter()
     const searchParams = useSearchParams()
 
@@ -33,7 +34,10 @@ export default function BrowsePage() {
     const applyFilters = useCallback(() => {
         let result = [...PRODUCTS] as Product[]
 
-        if (query) result = result.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) || p.tags.some(t => t.includes(query.toLowerCase())))
+        if (query) result = result.filter(p =>
+            p.title.toLowerCase().includes(query.toLowerCase()) ||
+            p.tags.some(t => t.includes(query.toLowerCase()))
+        )
         if (category && category !== 'all') result = result.filter(p => p.category === category)
         if (conditions.length) result = result.filter(p => conditions.includes(p.condition))
         if (minPrice) result = result.filter(p => p.price >= Number(minPrice))
@@ -43,7 +47,9 @@ export default function BrowsePage() {
             case 'price_asc': result.sort((a, b) => a.price - b.price); break
             case 'price_desc': result.sort((a, b) => b.price - a.price); break
             case 'rating': result.sort((a, b) => b.rating - a.rating); break
-            default: result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            default: result.sort((a, b) =>
+                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            )
         }
 
         setFiltered(result)
@@ -58,7 +64,9 @@ export default function BrowsePage() {
     }
 
     function toggleCondition(c: string) {
-        setConditions(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c])
+        setConditions(prev =>
+            prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]
+        )
     }
 
     function clearFilters() {
@@ -273,5 +281,19 @@ export default function BrowsePage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+// ── Outer page — wraps inner in Suspense so useSearchParams() is safe ─────
+export default function BrowsePage() {
+    return (
+        <Suspense fallback={
+            <div className="section-sd py-20 text-center">
+                <div className="text-4xl mb-3">📚</div>
+                <p className="text-[14px]" style={{ color: 'var(--text-secondary)' }}>Loading listings…</p>
+            </div>
+        }>
+            <BrowseContent />
+        </Suspense>
     )
 }
