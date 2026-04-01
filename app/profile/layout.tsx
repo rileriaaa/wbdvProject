@@ -35,7 +35,7 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-8 md:py-12">
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0' }}>
                 <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8 items-start">
 
                     <aside className="sticky top-[80px]">

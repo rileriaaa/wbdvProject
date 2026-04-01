@@ -12,9 +12,9 @@ const SUGGESTIONS = [
 export default function NotFound() {
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-20 md:py-28">
+            <div className="section-sd py-20 md:py-28" style={{ padding: '50px 0 50px 0' }}>
 
-                <div className="text-center mb-14">
+                <div className="text-center">
                     <div
                         className="text-[120px] md:text-[160px] font-bold leading-none mb-2 select-none"
                         style={{
@@ -57,7 +57,7 @@ export default function NotFound() {
                 </div>
 
                 <div className="max-w-[700px] mx-auto">
-                    <p className="text-[12px] font-bold uppercase tracking-widest text-center mb-5" style={{ color: 'var(--text-muted)' }}>
+                    <p className="text-[12px] font-bold mt-4 uppercase tracking-widest text-center mb-5" style={{ color: 'var(--text-muted)' }}>
                         You might be looking for
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

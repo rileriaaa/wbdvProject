@@ -42,7 +42,7 @@ export default function MyProfilePage() {
 
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Personal Information</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Personal Information</h2>
                 </div>
                 <form onSubmit={handleSave} className="p-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -77,7 +77,7 @@ export default function MyProfilePage() {
 
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Saved Addresses</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Saved Addresses</h2>
                 </div>
                 <div className="p-5">
                     <div className="p-4 rounded-xl flex items-center justify-between mb-3" style={{ background: 'var(--bg-subtle)', border: '1.5px solid var(--border)' }}>
@@ -96,7 +96,7 @@ export default function MyProfilePage() {
 
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3 flex items-center justify-between" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Wishlist</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Wishlist</h2>
                 </div>
                 <div className="p-5">
                     {wishlistProducts.length === 0 ? (

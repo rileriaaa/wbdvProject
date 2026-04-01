@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa6'
+import type { IconType } from 'react-icons'
 
 const shopLinks = [
     { href: '/browse', label: 'Browse All' },
@@ -12,16 +15,22 @@ const accountLinks = [
     { href: '/profile', label: 'My Profile' },
     { href: '/profile/orders', label: 'Purchase History' },
     { href: '/cart', label: 'Cart' },
-    { href: '/seller/listings', label: 'Sell an Item' },
-    { href: '/login', label: 'Log In' },
+    { href: '/profile/seller/listings/new', label: 'Sell an Item' },
+    { href: '/profile/settings', label: 'Account Settings' },
 ]
 
 const supportLinks = [
     { href: '/about', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
     { href: '/contact', label: 'Contact Us' },
-    { href: '/terms', label: 'Terms of Service' },
-    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms-and-conditions', label: 'Terms of Service' },
+    { href: '/privacy-policy', label: 'Privacy Policy' },
+]
+
+const socialLinks: { icon: IconType; title: string; href: string }[] = [
+    { icon: FaFacebook, title: 'Facebook', href: 'https://www.facebook.com/shlynavtiff/' },
+    { icon: FaInstagram, title: 'Instagram', href: 'https://www.instagram.com/rileriaaa/' },
+    { icon: FaGithub, title: 'Github', href: 'https://github.com/rileriaaa' },
 ]
 
 function FooterLinkList({ links }: { links: { href: string; label: string }[] }) {
@@ -92,13 +101,9 @@ export default function Footer() {
                                 A student marketplace for buying and selling textbooks, supplies, and educational materials.
                             </p>
                             <div className="flex gap-2 mt-4">
-                                {[
-                                    { label: 'F', title: 'Facebook' },
-                                    { label: 'I', title: 'Instagram' },
-                                    { label: 'X', title: 'Twitter/X' },
-                                ].map(s => (
-                                    <a key={s.label} href="#" className="footer-social" title={s.title}>
-                                        {s.label}
+                                {socialLinks.map(s => (
+                                    <a key={s.title} href={s.href} target='_blank' className="footer-social" title={s.title} aria-label={s.title}>
+                                        <s.icon size={14} />
                                     </a>
                                 ))}
                             </div>
@@ -131,11 +136,11 @@ export default function Footer() {
                         style={{ borderTop: '1px solid var(--border)' }}
                     >
                         <p className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
-                            developed by rileriaaa.me
+                            developed by <a className='text-[#FFC0CB] font-bold' href="https://www.rileriaaa.me/" target='_blank'>rileriaaa.me</a>
                         </p>
                         <div className="flex items-center gap-4">
-                            <Link href="/terms" className="footer-link text-[12px]">Terms</Link>
-                            <Link href="/privacy" className="footer-link text-[12px]">Privacy</Link>
+                            <Link href="/terms-and-conditions" className="footer-link text-[12px]">Terms</Link>
+                            <Link href="/privacy-policy" className="footer-link text-[12px]">Privacy</Link>
                         </div>
                     </div>
                 </div>

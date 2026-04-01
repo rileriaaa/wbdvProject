@@ -58,7 +58,7 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <div className="section-sd py-12 md:py-16">
+            <div className="section-sd py-12 md:py-16" style={{ padding: '50px 0 50px 0' }}>
                 <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 items-start">
 
                     <nav className="sticky top-[80px] hidden lg:block">

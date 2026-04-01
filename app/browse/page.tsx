@@ -16,7 +16,6 @@ const SORT_OPTIONS = [
 const CONDITIONS = ['Like New', 'Good', 'Fair']
 const PAGE_SIZE = 6
 
-// ── Inner component — safe to use useSearchParams() here ─────────────────
 function BrowseContent() {
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -81,7 +80,7 @@ function BrowseContent() {
     const FilterSidebar = () => (
         <div className="flex flex-col gap-6">
             <div>
-                <h3 className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Category</h3>
+                <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Category</h3>
                 <div className="flex flex-col gap-1">
                     {(CATEGORIES as Category[]).map(cat => (
                         <button
@@ -137,7 +136,7 @@ function BrowseContent() {
     )
 
     return (
-        <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+        <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '50px 0 50px 0 ' }}>
             <div className="section-sd py-8">
 
                 <div className="mb-6">

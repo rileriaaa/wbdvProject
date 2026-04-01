@@ -64,7 +64,7 @@ export default function ItemDetailPage() {
         <div style={{ background: 'var(--bg)' }}>
 
             <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-subtle)' }}>
-                <div className="section-sd py-2.5">
+                <div className="section-sd py-2.5" >
                     <nav className="flex items-center gap-2 text-[12px]" style={{ color: 'var(--text-muted)' }}>
                         <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
                         <span>›</span>
@@ -77,7 +77,7 @@ export default function ItemDetailPage() {
                 </div>
             </div>
 
-            <div className="section-sd py-8 md:py-12">
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0' }}>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
 

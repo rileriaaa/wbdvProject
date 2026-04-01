@@ -58,7 +58,7 @@ export default function OrdersDashboardPage() {
 
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Incoming Orders</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Incoming Orders</h2>
                 </div>
 
                 <div className="flex items-center gap-1 px-5 pt-3" style={{ borderBottom: '1px solid var(--border)' }}>
@@ -127,7 +127,7 @@ export default function OrdersDashboardPage() {
 
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Sales Summary</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Sales Summary</h2>
                 </div>
                 <div className="p-5">
                     <div className="h-[120px] rounded-xl flex items-center justify-center mb-4" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}>

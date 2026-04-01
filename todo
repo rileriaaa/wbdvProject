@@ -3,6 +3,9 @@
 fix unaligned icons
 add padding to pages
 
+landing page darkmode support
+landing page hero banner sign up for free fix when logged in
+
 pages done
  - item/[id]
  - browse

@@ -81,10 +81,9 @@ function AddEditProductContent() {
                 {isEdit ? 'Edit Listing' : 'Add New Listing'}
             </h1>
 
-            {/* Product Information */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Product Information</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest" style={{ color: 'var(--bg)' }}>Product Information</h2>
                 </div>
                 <div className="p-5 grid grid-cols-1 gap-4">
                     <div>
@@ -125,10 +124,9 @@ function AddEditProductContent() {
                 </div>
             </div>
 
-            {/* Photos */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Product Photos</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest" style={{ color: 'var(--bg)' }}>Product Photos</h2>
                 </div>
                 <div className="p-5">
                     <div className="grid grid-cols-4 gap-3 mb-3">
@@ -147,10 +145,9 @@ function AddEditProductContent() {
                 </div>
             </div>
 
-            {/* Pricing & Stock */}
             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Pricing &amp; Stock</h2>
+                    <h2 className="text-[12px] font-bold uppercase tracking-widest" style={{ color: 'var(--bg)' }}>Pricing &amp; Stock</h2>
                 </div>
                 <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
@@ -189,7 +186,6 @@ function AddEditProductContent() {
                 </div>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center gap-3 flex-wrap">
                 <button onClick={handlePublish} disabled={loading} className="btn-primary text-[14px] h-[48px] px-8" style={{ opacity: loading ? 0.7 : 1 }}>
                     {loading ? 'Publishing…' : 'Publish Listing →'}
@@ -202,7 +198,6 @@ function AddEditProductContent() {
     )
 }
 
-// ── Suspense wrapper — required for useSearchParams() ────────────────────
 export default function AddEditProductPage() {
     return (
         <Suspense fallback={

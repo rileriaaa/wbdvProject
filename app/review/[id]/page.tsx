@@ -56,7 +56,7 @@ export default function LeaveReviewPage() {
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-8 md:py-12 max-w-[700px]">
+            <div className="section-sd py-8 md:py-12 max-w-[700px]" style={{ padding: '50px 0 50px 0' }}>
                 <Link href="/profile/orders" className="text-[12px] font-medium mb-4 flex items-center gap-1" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
                     ← Back to Orders
                 </Link>

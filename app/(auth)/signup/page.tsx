@@ -95,12 +95,10 @@ export default function SignUpPage() {
             className="min-h-screen flex"
             style={{ background: 'var(--bg)' }}
         >
-            {/* ── LEFT PANEL (decorative) ── */}
             <div
                 className="hidden lg:flex flex-col justify-between w-[420px] flex-shrink-0 p-10"
                 style={{ background: 'var(--text)' }}
             >
-                {/* Logo */}
                 <Link href="/" className="flex items-center gap-2" style={{ textDecoration: 'none' }}>
                     <div className="w-8 h-8 rounded-md flex items-center justify-center text-base" style={{ background: 'var(--accent)' }}>
                         📚
@@ -108,7 +106,6 @@ export default function SignUpPage() {
                     <span className="font-bold text-[15px] text-white">Scholar&apos;s Den</span>
                 </Link>
 
-                {/* Quote */}
                 <div>
                     <p className="text-[28px] font-bold leading-snug mb-4" style={{ color: '#fff' }}>
                         Join thousands of students buying and selling smarter.
@@ -129,7 +126,6 @@ export default function SignUpPage() {
                     </div>
                 </div>
 
-                {/* Already have account */}
                 <p className="text-[13px]" style={{ color: 'rgba(255,255,255,0.4)' }}>
                     Already have an account?{' '}
                     <Link href="/login" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'underline' }}>
@@ -138,11 +134,9 @@ export default function SignUpPage() {
                 </p>
             </div>
 
-            {/* ── RIGHT PANEL (form) ── */}
             <div className="flex-1 flex items-center justify-center p-6 md:p-10">
                 <div className="w-full max-w-[440px]">
 
-                    {/* Mobile logo */}
                     <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden" style={{ textDecoration: 'none' }}>
                         <div className="w-7 h-7 rounded-md flex items-center justify-center text-sm" style={{ background: 'var(--accent)' }}>📚</div>
                         <span className="font-bold text-[14px]" style={{ color: 'var(--text)' }}>Scholar&apos;s Den</span>
@@ -157,7 +151,6 @@ export default function SignUpPage() {
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-                        {/* Name row */}
                         <div className="grid grid-cols-2 gap-3">
                             <div>
                                 <label className="block text-[12px] font-semibold mb-1.5 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
@@ -189,7 +182,6 @@ export default function SignUpPage() {
                             </div>
                         </div>
 
-                        {/* Email */}
                         <div>
                             <label className="block text-[12px] font-semibold mb-1.5 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
                                 Email Address
@@ -205,7 +197,6 @@ export default function SignUpPage() {
                             {errors.email && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.email}</p>}
                         </div>
 
-                        {/* Password */}
                         <div>
                             <label className="block text-[12px] font-semibold mb-1.5 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
                                 Password
@@ -231,7 +222,6 @@ export default function SignUpPage() {
                             {errors.password && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.password}</p>}
                         </div>
 
-                        {/* Confirm password */}
                         <div>
                             <label className="block text-[12px] font-semibold mb-1.5 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
                                 Confirm Password
@@ -257,7 +247,6 @@ export default function SignUpPage() {
                             {errors.confirmPassword && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.confirmPassword}</p>}
                         </div>
 
-                        {/* Role selector */}
                         <div>
                             <label className="block text-[12px] font-semibold mb-2 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
                                 I want to
@@ -287,7 +276,6 @@ export default function SignUpPage() {
                             </div>
                         </div>
 
-                        {/* Terms checkbox */}
                         <div>
                             <label className="flex items-start gap-2.5 cursor-pointer">
                                 <input
@@ -307,7 +295,6 @@ export default function SignUpPage() {
                             {errors.agreedToTerms && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.agreedToTerms}</p>}
                         </div>
 
-                        {/* Submit */}
                         <button
                             type="submit"
                             disabled={loading}
@@ -317,22 +304,6 @@ export default function SignUpPage() {
                             {loading ? 'Creating account…' : 'Create Account →'}
                         </button>
 
-                        {/* Divider */}
-                        <div className="flex items-center gap-3">
-                            <hr className="divider-sd flex-1" />
-                            <span className="text-[12px]" style={{ color: 'var(--text-muted)' }}>or</span>
-                            <hr className="divider-sd flex-1" />
-                        </div>
-
-                        {/* Google OAuth (simulated) */}
-                        <button
-                            type="button"
-                            className="btn-secondary h-[44px] w-full text-[14px] flex items-center justify-center gap-2"
-                        >
-                            <span>🌐</span> Continue with Google
-                        </button>
-
-                        {/* Login link (mobile) */}
                         <p className="text-center text-[13px] lg:hidden" style={{ color: 'var(--text-secondary)' }}>
                             Already have an account?{' '}
                             <Link href="/login" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>

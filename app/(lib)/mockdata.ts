@@ -1,6 +1,5 @@
 import type { Category, Product, SellerProfile, User, Order, Notification } from '@/types'
 
-// ── CATEGORIES ────────────────────────────────────────────────────────────
 export const CATEGORIES: Category[] = [
   { id: 'all',         label: 'All Items',       icon: '📦' },
   { id: 'textbooks',   label: 'Textbooks',       icon: '📚' },
@@ -11,7 +10,6 @@ export const CATEGORIES: Category[] = [
   { id: 'misc',        label: 'Miscellaneous',    icon: '🗂️' },
 ]
 
-// ── PRODUCTS ──────────────────────────────────────────────────────────────
 export const PRODUCTS: Product[] = [
   {
     id: '1',
@@ -159,7 +157,6 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
-// ── SELLERS ───────────────────────────────────────────────────────────────
 export const SELLERS: SellerProfile[] = [
   {
     id: 's1',
@@ -191,7 +188,6 @@ export const SELLERS: SellerProfile[] = [
   },
 ]
 
-// ── MOCK USER ─────────────────────────────────────────────────────────────
 export const MOCK_USER: User = {
   id: 'u1',
   firstName: 'Ashley',
@@ -204,7 +200,6 @@ export const MOCK_USER: User = {
   school: 'Polytechnic University of the Philippines',
 }
 
-// ── MOCK ORDERS ───────────────────────────────────────────────────────────
 export const MOCK_ORDERS: Order[] = [
   {
     id: 'ORD-2024-001',
@@ -226,7 +221,6 @@ export const MOCK_ORDERS: Order[] = [
   },
 ]
 
-// ── MOCK NOTIFICATIONS ────────────────────────────────────────────────────
 export const MOCK_NOTIFICATIONS: Notification[] = [
   { id: 'n1', type: 'Order Update', title: 'Your order has been shipped!',       body: 'ORD-2024-002 is on its way.',                       time: '2h ago',  read: false },
   { id: 'n2', type: 'Message',      title: 'New message from Maria Santos',      body: 'Hi! Is the calculus book still available?',         time: '4h ago',  read: false },

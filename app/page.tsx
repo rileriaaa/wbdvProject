@@ -101,7 +101,7 @@ export default function LandingPage() {
 
               <h1
                 className="text-4xl md:text-5xl lg:text-[52px] font-bold leading-[1.1] tracking-tight mb-5"
-                style={{ color: '#ffffff', fontFamily: 'var(--font-sans)' }}
+                style={{ color: 'var(--bg)', fontFamily: 'var(--font-sans)' }}
               >
                 Your campus
                 <span
@@ -118,7 +118,7 @@ export default function LandingPage() {
 
               <p
                 className="text-[16px] leading-relaxed mb-8 max-w-[480px]"
-                style={{ color: 'rgba(255,255,255,0.6)' }}
+                style={{ color: 'var(--bg)' }}
               >
                 Buy and sell textbooks, school supplies, and learning materials with
                 fellow students. Save money. Earn money. Keep it on campus.
@@ -169,7 +169,7 @@ export default function LandingPage() {
                 <Link
                   href="/signup"
                   className="text-[14px] font-medium flex items-center gap-1.5"
-                  style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}
+                  style={{ color: 'var(--bg)', textDecoration: 'none' }}
                 >
                   Sign Up Free →
                 </Link>
@@ -188,11 +188,11 @@ export default function LandingPage() {
                 >
                   <div
                     className="text-[32px] font-bold mb-1"
-                    style={{ color: '#fff', fontFamily: 'var(--font-sans)' }}
+                    style={{ color: 'var(--bg)', fontFamily: 'var(--font-sans)' }}
                   >
                     {stat.value}
                   </div>
-                  <div className="text-[13px]" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                  <div className="text-[13px]" style={{ color: 'var(--bg)' }}>
                     {stat.label}
                   </div>
                 </div>

@@ -24,7 +24,7 @@ export default function SellerProfilePage() {
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-8 md:py-12">
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0' }}>
 
                 <div
                     className="rounded-2xl p-6 md:p-8 mb-8"
