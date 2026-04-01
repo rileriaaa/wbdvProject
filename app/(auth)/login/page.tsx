@@ -1,23 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { setUser } from '../../(lib)/storage'
-// import { MOCK_USER } from '../(lib)/mockdata'
-import type { User, Product, Category } from '../../../types/index'
-
-export const MOCK_USER = {
-    id: 'u1',
-    firstName: 'Ashley',
-    lastName: 'Naval',
-    email: 'ashley@email.com',
-    avatar: null,
-    role: 'both', // 'buyer' | 'seller' | 'both'
-    rating: 4.8,
-    memberSince: '2024',
-    school: 'Polytechnic University of the Philippines',
-} satisfies User
+import { useRouter, useSearchParams } from 'next/navigation'
+import { setUser, setAuthCookie } from '../../(lib)/storage'
+import { MOCK_USER } from '../../(lib)/mockdata'
+import type { UserRole } from '../../../types'
 
 interface FormData {
     email: string
@@ -31,8 +19,11 @@ interface FormErrors {
     general?: string
 }
 
-export default function LoginPage() {
+function LoginContent() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const redirectParam = searchParams.get('redirect')
+    const redirectTo = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/browse'
 
     const [form, setForm] = useState<FormData>({
         email: '',
@@ -71,10 +62,11 @@ export default function LoginPage() {
         await new Promise(r => setTimeout(r, 800))
 
         // Simulate auth — accept any email/password, log in as MOCK_USER
-        const user = { ...MOCK_USER, email: form.email.toLowerCase() }
+        const user = { ...MOCK_USER, email: form.email.toLowerCase(), role: MOCK_USER.role as UserRole }
         setUser(user)
+        setAuthCookie()
         setLoading(false)
-        router.push('/')
+        router.push(redirectTo)
     }
 
     async function handleForgotSubmit(e: React.FormEvent) {
@@ -86,6 +78,7 @@ export default function LoginPage() {
         setForgotSent(true)
     }
 
+    // ── FORGOT PASSWORD MODE ───────────────────────────────────────────────
     if (forgotMode) {
         return (
             <div className="min-h-screen flex items-center justify-center p-6" style={{ background: 'var(--bg)' }}>
@@ -151,9 +144,11 @@ export default function LoginPage() {
         )
     }
 
+    // ── MAIN LOGIN ─────────────────────────────────────────────────────────
     return (
         <div className="min-h-screen flex" style={{ background: 'var(--bg)' }}>
 
+            {/* ── LEFT PANEL ── */}
             <div
                 className="hidden lg:flex flex-col justify-between w-[420px] flex-shrink-0 p-10"
                 style={{ background: 'var(--text)' }}
@@ -191,9 +186,11 @@ export default function LoginPage() {
                 </p>
             </div>
 
+            {/* ── RIGHT PANEL ── */}
             <div className="flex-1 flex items-center justify-center p-6 md:p-10">
                 <div className="w-full max-w-[400px]">
 
+                    {/* Mobile logo */}
                     <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden" style={{ textDecoration: 'none' }}>
                         <div className="w-7 h-7 rounded-md flex items-center justify-center text-sm" style={{ background: 'var(--accent)' }}>📚</div>
                         <span className="font-bold text-[14px]" style={{ color: 'var(--text)' }}>Scholar&apos;s Den</span>
@@ -206,6 +203,7 @@ export default function LoginPage() {
                         Log in to your Scholar&apos;s Den account.
                     </p>
 
+                    {/* General error */}
                     {errors.general && (
                         <div className="mb-4 px-4 py-3 rounded-lg text-[13px]" style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#dc2626' }}>
                             {errors.general}
@@ -214,6 +212,7 @@ export default function LoginPage() {
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
+                        {/* Email */}
                         <div>
                             <label className="block text-[12px] font-semibold mb-1.5 uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
                                 Email Address
@@ -230,6 +229,7 @@ export default function LoginPage() {
                             {errors.email && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.email}</p>}
                         </div>
 
+                        {/* Password */}
                         <div>
                             <div className="flex items-center justify-between mb-1.5">
                                 <label className="text-[12px] font-semibold uppercase tracking-wide" style={{ color: 'var(--text-secondary)' }}>
@@ -266,6 +266,7 @@ export default function LoginPage() {
                             {errors.password && <p className="text-[11px] mt-1" style={{ color: '#dc2626' }}>{errors.password}</p>}
                         </div>
 
+                        {/* Remember me */}
                         <label className="flex items-center gap-2.5 cursor-pointer">
                             <input
                                 type="checkbox"
@@ -279,6 +280,7 @@ export default function LoginPage() {
                             </span>
                         </label>
 
+                        {/* Submit */}
                         <button
                             type="submit"
                             disabled={loading}
@@ -288,12 +290,14 @@ export default function LoginPage() {
                             {loading ? 'Logging in…' : 'Log In →'}
                         </button>
 
+                        {/* Divider */}
                         <div className="flex items-center gap-3">
                             <hr className="divider-sd flex-1" />
                             <span className="text-[12px]" style={{ color: 'var(--text-muted)' }}>or</span>
                             <hr className="divider-sd flex-1" />
                         </div>
 
+                        {/* Google OAuth */}
                         <button
                             type="button"
                             className="btn-secondary h-[44px] w-full text-[14px] flex items-center justify-center gap-2"
@@ -301,6 +305,7 @@ export default function LoginPage() {
                             <span>🌐</span> Continue with Google
                         </button>
 
+                        {/* Sign up link (mobile) */}
                         <p className="text-center text-[13px] lg:hidden" style={{ color: 'var(--text-secondary)' }}>
                             Don&apos;t have an account?{' '}
                             <Link href="/signup" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>
@@ -312,5 +317,18 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+// ── Suspense wrapper — required for useSearchParams() ────────────────────
+export default function LoginPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <p style={{ color: 'var(--text-secondary)' }}>Loading…</p>
+            </div>
+        }>
+            <LoginContent />
+        </Suspense>
     )
 }

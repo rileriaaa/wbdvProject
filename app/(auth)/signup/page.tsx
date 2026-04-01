@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { setUser } from '../../(lib)/storage'
+import { setUser, setAuthCookie } from '../../(lib)/storage'
 import type { User, UserRole } from '@/types'
 
 interface FormData {
@@ -85,6 +85,7 @@ export default function SignUpPage() {
         }
 
         setUser(newUser)
+        setAuthCookie()
         setLoading(false)
         router.push('/')
     }

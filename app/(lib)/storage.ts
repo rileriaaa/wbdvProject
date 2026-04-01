@@ -1,5 +1,6 @@
-import type { User, CartItem, Product, Theme } from '../../types/index'
+import type { User, CartItem, Product, Theme } from '@/types'
 
+// ── AUTH ──────────────────────────────────────────────────────────────────
 export function getUser(): User | null {
   if (typeof window === 'undefined') return null
   try {
@@ -22,6 +23,7 @@ export function isLoggedIn(): boolean {
   return !!getUser()
 }
 
+// ── CART ──────────────────────────────────────────────────────────────────
 export function getCart(): CartItem[] {
   if (typeof window === 'undefined') return []
   try {
@@ -68,6 +70,7 @@ export function getCartTotal(): number {
   return getCart().reduce((sum, item) => sum + item.price * item.qty, 0)
 }
 
+// ── WISHLIST ──────────────────────────────────────────────────────────────
 export function getWishlist(): Product[] {
   if (typeof window === 'undefined') return []
   try {
@@ -90,6 +93,7 @@ export function isWishlisted(productId: string): boolean {
   return !!getWishlist().find(item => item.id === productId)
 }
 
+// ── THEME ─────────────────────────────────────────────────────────────────
 export function getTheme(): Theme {
   if (typeof window === 'undefined') return 'light'
   return (localStorage.getItem('sd_theme') as Theme) || 'light'
@@ -105,4 +109,21 @@ export function toggleTheme(): Theme {
   const next: Theme = current === 'light' ? 'dark' : 'light'
   setTheme(next)
   return next
+}
+
+
+// ── COOKIE AUTH (used by middleware for protected routes) ─────────────────
+// Call these alongside setUser/removeUser so the cookie stays in sync
+
+export function setAuthCookie(): void {
+  if (typeof document === 'undefined') return
+  // Set cookie that expires in 7 days
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
+  document.cookie = `sd_auth=1; path=/; expires=${expires}; SameSite=Lax`
+}
+
+export function removeAuthCookie(): void {
+  if (typeof document === 'undefined') return
+  // Expire the cookie immediately
+  document.cookie = 'sd_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
 }

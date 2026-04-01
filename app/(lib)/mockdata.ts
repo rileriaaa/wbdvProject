@@ -1,17 +1,18 @@
-import type { Notification } from '@/types'
+import type { Category, Product, SellerProfile, User, Order, Notification } from '@/types'
 
 // ── CATEGORIES ────────────────────────────────────────────────────────────
-export const CATEGORIES = [
-  { id: 'all',       label: 'All Items',      icon: '📦' },
-  { id: 'textbooks', label: 'Textbooks',      icon: '📚' },
-  { id: 'supplies',  label: 'School Supplies',icon: '✏️' },
-  { id: 'art',       label: 'Art Materials',  icon: '🎨' },
-  { id: 'lab',       label: 'Lab Equipment',  icon: '🔬' },
-  { id: 'electronics',label:'Electronics',    icon: '💻' },
-  { id: 'misc',      label: 'Miscellaneous',  icon: '🗂️' },
+export const CATEGORIES: Category[] = [
+  { id: 'all',         label: 'All Items',       icon: '📦' },
+  { id: 'textbooks',   label: 'Textbooks',       icon: '📚' },
+  { id: 'supplies',    label: 'School Supplies',  icon: '✏️' },
+  { id: 'art',         label: 'Art Materials',    icon: '🎨' },
+  { id: 'lab',         label: 'Lab Equipment',    icon: '🔬' },
+  { id: 'electronics', label: 'Electronics',      icon: '💻' },
+  { id: 'misc',        label: 'Miscellaneous',    icon: '🗂️' },
 ]
 
-export const PRODUCTS = [
+// ── PRODUCTS ──────────────────────────────────────────────────────────────
+export const PRODUCTS: Product[] = [
   {
     id: '1',
     title: 'Calculus: Early Transcendentals, 8th Edition',
@@ -27,7 +28,7 @@ export const PRODUCTS = [
     edition: '8th',
     description: 'Barely used. No highlights, minimal pencil marks on first chapter only. Perfect for MATH 101/102.',
     tags: ['calculus', 'textbook', 'mathematics', 'college'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-01',
   },
   {
@@ -45,7 +46,7 @@ export const PRODUCTS = [
     edition: null,
     description: 'Complete drawing set. Used only once. Includes T-square, compass, set squares, and protractor.',
     tags: ['drawing', 'engineering', 'supplies'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-05',
   },
   {
@@ -63,7 +64,7 @@ export const PRODUCTS = [
     edition: '9th',
     description: 'Some highlighting in chapters 1-5. Spine intact. Great for CHEM 201.',
     tags: ['chemistry', 'textbook', 'organic', 'mcmurry'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-08',
   },
   {
@@ -81,7 +82,7 @@ export const PRODUCTS = [
     edition: null,
     description: 'High precision compass set. All parts complete, stored in original case.',
     tags: ['art', 'compass', 'drawing', 'architecture'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-10',
   },
   {
@@ -99,7 +100,7 @@ export const PRODUCTS = [
     edition: '10th',
     description: 'Clean copy, no markings. Chapters 1-15 covered in lectures only.',
     tags: ['physics', 'textbook', 'serway', 'science'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-12',
   },
   {
@@ -117,7 +118,7 @@ export const PRODUCTS = [
     edition: null,
     description: 'Used for 1 semester only. Fully functional, original box included.',
     tags: ['calculator', 'casio', 'electronics', 'math'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-14',
   },
   {
@@ -135,7 +136,7 @@ export const PRODUCTS = [
     edition: '6th',
     description: 'Minor pencil notes in ch. 3. All pages present. Great for CS 201/301.',
     tags: ['cs', 'algorithms', 'textbook', 'programming'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-15',
   },
   {
@@ -153,12 +154,13 @@ export const PRODUCTS = [
     edition: null,
     description: 'Half pans barely touched. Perfect for watercolor class.',
     tags: ['art', 'watercolor', 'painting', 'fine arts'],
-    images: ['/images/placeholder.jpg'],
+    images: [],
     createdAt: '2024-03-16',
   },
 ]
 
-export const SELLERS = [
+// ── SELLERS ───────────────────────────────────────────────────────────────
+export const SELLERS: SellerProfile[] = [
   {
     id: 's1',
     name: 'Maria Santos',
@@ -171,7 +173,7 @@ export const SELLERS = [
     responseRate: '98%',
     memberSince: '2023',
     badges: ['Top Rated', 'Fast Responder', 'Verified Student'],
-    bio: 'Selling textbooks and supplies from my first 2 years. All items well-kept. Fast to respond!',
+    bio: 'Selling textbooks and supplies from my first 2 years. All items well-kept!',
   },
   {
     id: 's2',
@@ -189,19 +191,21 @@ export const SELLERS = [
   },
 ]
 
-export const MOCK_USER = {
+// ── MOCK USER ─────────────────────────────────────────────────────────────
+export const MOCK_USER: User = {
   id: 'u1',
   firstName: 'Ashley',
   lastName: 'Naval',
   email: 'ashley@email.com',
   avatar: null,
-  role: 'both', // 'buyer' | 'seller' | 'both'
+  role: 'both' as const,
   rating: 4.8,
   memberSince: '2024',
   school: 'Polytechnic University of the Philippines',
 }
 
-export const MOCK_ORDERS = [
+// ── MOCK ORDERS ───────────────────────────────────────────────────────────
+export const MOCK_ORDERS: Order[] = [
   {
     id: 'ORD-2024-001',
     items: [PRODUCTS[0]],
@@ -222,9 +226,10 @@ export const MOCK_ORDERS = [
   },
 ]
 
-export const MOCK_NOTIFICATIONS = [
-  { id: 'n1', type: 'Order Update', title: 'Your order has been shipped!', body: 'ORD-2024-002 is on its way.', time: '2h ago', read: false },
-  { id: 'n2', type: 'Message',      title: 'New message from Maria Santos', body: 'Hi! Is the calculus book still available?', time: '4h ago', read: false },
-  { id: 'n3', type: 'Promotion',    title: 'Flash Sale — Up to 50% off Textbooks', body: 'Limited time only. Browse now.', time: '1d ago', read: true },
-  { id: 'n4', type: 'Review',       title: 'Leave a review for your order', body: 'How was your purchase of Calculus 8th Ed?', time: '2d ago', read: true },
-] as Notification[]
+// ── MOCK NOTIFICATIONS ────────────────────────────────────────────────────
+export const MOCK_NOTIFICATIONS: Notification[] = [
+  { id: 'n1', type: 'Order Update', title: 'Your order has been shipped!',       body: 'ORD-2024-002 is on its way.',                       time: '2h ago',  read: false },
+  { id: 'n2', type: 'Message',      title: 'New message from Maria Santos',      body: 'Hi! Is the calculus book still available?',         time: '4h ago',  read: false },
+  { id: 'n3', type: 'Promotion',    title: 'Flash Sale — Up to 50% off',         body: 'Limited time only. Browse now.',                    time: '1d ago',  read: true  },
+  { id: 'n4', type: 'Review',       title: 'Leave a review for your order',      body: 'How was your purchase of Calculus 8th Ed?',         time: '2d ago',  read: true  },
+]
