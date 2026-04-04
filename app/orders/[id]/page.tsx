@@ -42,7 +42,7 @@ export default function OrderDetailsPage() {
 
                         <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                             <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Delivery Progress</h2>
+                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Delivery Progress</h2>
                             </div>
                             <div className="p-6">
                                 <div className="relative flex items-start justify-between">
@@ -74,7 +74,7 @@ export default function OrderDetailsPage() {
 
                         <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                             <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Items ({order.items.length})</h2>
+                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Items ({order.items.length})</h2>
                             </div>
                             <div className="p-5 flex flex-col gap-4">
                                 {order.items.map(item => (
@@ -92,7 +92,7 @@ export default function OrderDetailsPage() {
 
                         <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                             <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Shipping Information</h2>
+                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Shipping Information</h2>
                             </div>
                             <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 {[

@@ -66,7 +66,7 @@ export default function LeaveReviewPage() {
 
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                         <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Order Reference</h2>
+                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Order Reference</h2>
                         </div>
                         <div className="p-4 flex items-center gap-4">
                             <div className="w-14 h-14 rounded-lg flex items-center justify-center text-2xl flex-shrink-0" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}>📗</div>
@@ -80,7 +80,7 @@ export default function LeaveReviewPage() {
 
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                         <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Reviewing Seller</h2>
+                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Reviewing Seller</h2>
                         </div>
                         <div className="p-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export default function LeaveReviewPage() {
 
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                         <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Overall Rating</h2>
+                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Overall Rating</h2>
                         </div>
                         <div className="p-5 flex flex-col items-center gap-3">
                             <p className="text-[12px] font-medium uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Tap to rate</p>
@@ -125,7 +125,7 @@ export default function LeaveReviewPage() {
 
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                         <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Rate by Category</h2>
+                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Rate by Category</h2>
                         </div>
                         <div className="p-5 flex flex-col gap-4">
                             {([
@@ -143,7 +143,7 @@ export default function LeaveReviewPage() {
 
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                         <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Write Your Review</h2>
+                            <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Write Your Review</h2>
                         </div>
                         <div className="p-5 flex flex-col gap-4">
                             <div>

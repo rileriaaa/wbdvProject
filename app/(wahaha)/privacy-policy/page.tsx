@@ -50,7 +50,7 @@ const SHARING_TABLE = [
 export default function PrivacyPage() {
     return (
         <div style={{ background: 'var(--bg)' }}>
-            <section className="py-12" style={{ background: 'var(--text)' }}>
+            <section className="py-12" style={{ background: 'var(--dark-surface)' }}>
                 <div className="section-sd">
                     <p className="text-[12px] font-bold uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>Legal</p>
                     <h1 className="text-[32px] font-bold text-white mb-2">Privacy Policy</h1>

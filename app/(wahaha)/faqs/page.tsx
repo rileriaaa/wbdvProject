@@ -63,7 +63,7 @@ export default function FAQsPage() {
     return (
         <div style={{ background: 'var(--bg)' }}>
 
-            <section className="py-12 md:py-16" style={{ background: 'var(--text)' }}>
+            <section className="py-12 md:py-16" style={{ background: 'var(--dark-surface)' }}>
                 <div className="section-sd text-center">
                     <p className="text-[12px] font-bold uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>Help Center</p>
                     <h1 className="text-[32px] font-bold text-white mb-4">Frequently Asked Questions</h1>

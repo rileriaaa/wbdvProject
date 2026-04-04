@@ -176,7 +176,8 @@ export default function CheckoutPage() {
                             <div className="flex flex-col gap-6">
                                 <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                                     <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                        <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">① Shipping Information</h2>
+                                        <h2 className="text-[12px] font-bold uppercase tracking-widest text-white"
+                                            style={{ color: 'var(--bg)' }}>① Shipping Information</h2>
                                     </div>
                                     <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {field('Full Name', 'fullName', { placeholder: 'e.g. Ashley Naval' })}
@@ -193,7 +194,8 @@ export default function CheckoutPage() {
 
                                 <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                                     <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                        <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">② Shipping Method</h2>
+                                        <h2 className="text-[12px] font-bold uppercase tracking-widest text-white"
+                                            style={{ color: 'var(--bg)' }}>② Shipping Method</h2>
                                     </div>
                                     <div className="p-5 flex flex-col gap-3">
                                         {SHIPPING_METHODS.map(m => (

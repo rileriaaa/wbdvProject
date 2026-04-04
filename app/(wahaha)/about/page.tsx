@@ -13,8 +13,8 @@ const VALUES = [
     { icon: '⚡', title: 'Speed', desc: 'Fast listings, quick transactions, same-day campus pickup.' },
 ]
 const TEAM = [
-    { name: 'Ashley James Naval', role: 'Team Leader ,Lead Developer, UI/UX Architect, Information Architecture' },
-    { name: 'Chris Hular', role: 'UI/UX Designer' },
+    { name: 'Ashley James Naval', role: 'Lead Developer & UI/UX Architect' },
+    { name: 'Chris Hular', role: 'Information Architecture' },
     { name: 'Kurt Angelo Aves', role: 'UI/UX Designer' },
     { name: 'Blu Oloquina', role: 'UI/UX Designer' },
     { name: 'Karl Justin Salas', role: 'Content Manager' },
@@ -26,7 +26,8 @@ export default function AboutPage() {
     return (
         <div style={{ background: 'var(--bg)' }}>
 
-            <section style={{ background: 'var(--text)' }} className="py-16 md:py-24">
+            {/* Hero */}
+            <section style={{ background: 'var(--dark-surface)' }} className="py-16 md:py-24">
                 <div className="section-sd grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     <div>
                         <p className="text-[12px] font-bold uppercase tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>About Scholar&apos;s Den</p>
@@ -45,6 +46,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Stats */}
             <section className="py-12" style={{ background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border)' }}>
                 <div className="section-sd">
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -58,6 +60,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Mission */}
             <section className="py-16 md:py-20">
                 <div className="section-sd">
                     <div className="max-w-[700px] mx-auto text-center mb-14">
@@ -72,6 +75,7 @@ export default function AboutPage() {
                         </p>
                     </div>
 
+                    {/* Values */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         {VALUES.map(v => (
                             <div key={v.title} className="p-5 rounded-xl" style={{ background: 'var(--bg-subtle)', border: '1.5px solid var(--border)' }}>
@@ -84,6 +88,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Team */}
             <section className="py-16 md:py-20" style={{ background: 'var(--bg-subtle)', borderTop: '1px solid var(--border)' }}>
                 <div className="section-sd">
                     <div className="text-center mb-12">
@@ -107,6 +112,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Tech Stack */}
             <section className="py-12" style={{ borderTop: '1px solid var(--border)' }}>
                 <div className="section-sd">
                     <div className="flex items-center gap-4 flex-wrap">
@@ -118,7 +124,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className="py-16 md:py-20" style={{ background: 'var(--text)' }}>
+            {/* CTA */}
+            <section className="py-16 md:py-20" style={{ background: 'var(--dark-surface)' }}>
                 <div className="section-sd text-center">
                     <h2 className="text-[28px] md:text-[36px] font-bold mb-4 text-white">Ready to start saving?</h2>
                     <p className="text-[15px] mb-8" style={{ color: 'rgba(255,255,255,0.5)' }}>Join the student marketplace today.</p>

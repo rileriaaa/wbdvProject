@@ -27,7 +27,7 @@ export default function OrderConfirmPage() {
                     style={{
                         opacity: visible ? 1 : 0,
                         transform: visible ? 'translateY(0)' : 'translateY(12px)',
-                        background: 'var(--text)',
+                        background: 'var(--dark-surface)',
                     }}
                 >
                     <div className="flex flex-col items-center text-center py-12 px-6">
@@ -37,7 +37,7 @@ export default function OrderConfirmPage() {
                         >
                             ✅
                         </div>
-                        <h1 className="text-[28px] md:text-[34px] font-bold text-white mb-2">
+                        <h1 className="text-[28px] md:text-[34px] font-bold text-white mb-2" >
                             Order Placed Successfully!
                         </h1>
                         <p className="text-[15px] mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -57,7 +57,7 @@ export default function OrderConfirmPage() {
 
                         <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                             <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Items Ordered</h2>
+                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Items Ordered</h2>
                             </div>
                             <div className="p-5 flex flex-col gap-4">
                                 {order.items.map(item => (
@@ -75,7 +75,7 @@ export default function OrderConfirmPage() {
 
                         <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                             <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">Shipping Details</h2>
+                                <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Shipping Details</h2>
                             </div>
                             <div className="p-5">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">

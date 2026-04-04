@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import ProductCard from './(comps)/productCard'
 import { PRODUCTS, CATEGORIES } from './(lib)/mockdata'
-import type { Product, Category } from '../types/index'
+import type { Product, Category } from '@/types'
 
 const STATS = [
   { value: '1,200+', label: 'Active Listings' },
@@ -47,7 +47,6 @@ export default function LandingPage() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    // Show 8 featured products (top rated)
     const sorted = (PRODUCTS as Product[]).sort((a, b) => b.rating - a.rating)
     setFeaturedProducts(sorted.slice(0, 8))
   }, [])
@@ -70,7 +69,7 @@ export default function LandingPage() {
 
       <section
         className="relative overflow-hidden"
-        style={{ background: 'var(--text)' }}
+        style={{ background: 'var(--dark-surface)' }}
       >
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -101,7 +100,7 @@ export default function LandingPage() {
 
               <h1
                 className="text-4xl md:text-5xl lg:text-[52px] font-bold leading-[1.1] tracking-tight mb-5"
-                style={{ color: 'var(--bg)', fontFamily: 'var(--font-sans)' }}
+                style={{ color: '#ffffff', fontFamily: 'var(--font-sans)' }}
               >
                 Your campus
                 <span
@@ -118,7 +117,7 @@ export default function LandingPage() {
 
               <p
                 className="text-[16px] leading-relaxed mb-8 max-w-[480px]"
-                style={{ color: 'var(--bg)' }}
+                style={{ color: 'rgba(255,255,255,0.6)' }}
               >
                 Buy and sell textbooks, school supplies, and learning materials with
                 fellow students. Save money. Earn money. Keep it on campus.
@@ -169,7 +168,7 @@ export default function LandingPage() {
                 <Link
                   href="/signup"
                   className="text-[14px] font-medium flex items-center gap-1.5"
-                  style={{ color: 'var(--bg)', textDecoration: 'none' }}
+                  style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}
                 >
                   Sign Up Free →
                 </Link>
@@ -188,11 +187,11 @@ export default function LandingPage() {
                 >
                   <div
                     className="text-[32px] font-bold mb-1"
-                    style={{ color: 'var(--bg)', fontFamily: 'var(--font-sans)' }}
+                    style={{ color: '#fff', fontFamily: 'var(--font-sans)' }}
                   >
                     {stat.value}
                   </div>
-                  <div className="text-[13px]" style={{ color: 'var(--bg)' }}>
+                  <div className="text-[13px]" style={{ color: 'rgba(255,255,255,0.45)' }}>
                     {stat.label}
                   </div>
                 </div>
@@ -242,6 +241,7 @@ export default function LandingPage() {
 
       <section className="py-12 md:py-16">
         <div className="section-sd">
+          {/* Header */}
           <div className="flex items-end justify-between mb-6">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-widest mb-1" style={{ color: 'var(--accent)' }}>
@@ -283,7 +283,7 @@ export default function LandingPage() {
                 href={promo.href}
                 className="group block p-6 md:p-8 rounded-xl transition-transform hover:-translate-y-1"
                 style={{
-                  background: promo.dark ? 'var(--text)' : 'var(--accent-light)',
+                  background: promo.dark ? 'var(--dark-surface)' : 'var(--accent-light)',
                   border: `1px solid ${promo.dark ? 'transparent' : 'var(--accent-border)'}`,
                   textDecoration: 'none',
                 }}
