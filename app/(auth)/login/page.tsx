@@ -149,7 +149,7 @@ function LoginContent() {
 
             <div
                 className="hidden lg:flex flex-col justify-between w-[420px] flex-shrink-0 p-10"
-                style={{ background: 'var(--text)' }}
+                style={{ background: 'var(--dark-surface)' }}
             >
                 <Link href="/" className="flex items-center gap-2" style={{ textDecoration: 'none' }}>
                     <div className="w-8 h-8 rounded-md flex items-center justify-center text-base" style={{ background: 'var(--accent)' }}>

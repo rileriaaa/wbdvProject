@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { getUser, removeUser, removeAuthCookie, getCartCount, toggleTheme, getTheme } from '../(lib)/storage'
+import { getUser, removeUser, removeAuthCookie, getCartCount, toggleTheme, getTheme, onAuthStateChange } from '../(lib)/storage'
 import type { User, Theme } from '@/types'
 
 export default function Navbar() {
@@ -20,12 +20,18 @@ export default function Navbar() {
 
     const dropdownRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
+    function syncNavbarState() {
         setUser(getUser())
         setCartCount(getCartCount())
+    }
+
+    useEffect(() => {
+        syncNavbarState()
         const t = getTheme()
         setThemeState(t)
         document.documentElement.setAttribute('data-theme', t)
+
+        return onAuthStateChange(syncNavbarState)
     }, [])
 
     useEffect(() => {
@@ -68,10 +74,10 @@ export default function Navbar() {
     }
 
     const navLinks = [
+        { href: '/', label: 'Home' },
         { href: '/browse', label: 'Browse' },
-        { href: '/about', label: 'About' },
         { href: '/faqs', label: 'FAQs' },
-        { href: '/contact', label: 'Contact' },
+        { href: '/about', label: 'About' },
     ]
 
     const isActive = (href: string) =>
@@ -96,7 +102,6 @@ export default function Navbar() {
             <div className="section-sd">
                 <div className="flex items-center gap-3 h-[60px]">
 
-                    {/* ── LOGO ── */}
                     <Link href="/" className="flex items-center gap-2 flex-shrink-0" style={{ textDecoration: 'none' }}>
                         <div
                             className="w-8 h-8 rounded-md text-base flex-shrink-0"
@@ -105,14 +110,13 @@ export default function Navbar() {
                             📚
                         </div>
                         <span
-                            className="font-bold text-[15px] tracking-tight hidden sm:block"
+                            className="font-bold text-[14px] tracking-tight hidden sm:block"
                             style={{ color: 'var(--text)', fontFamily: 'var(--font-sans)' }}
                         >
                             Scholar&apos;s Den
                         </span>
                     </Link>
 
-                    {/* ── SEARCH BAR ── */}
                     <form onSubmit={handleSearch} className="flex-1 max-w-[420px] mx-auto hidden md:flex items-center">
                         <div className="relative w-full">
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }}>
@@ -123,13 +127,12 @@ export default function Navbar() {
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
                                 placeholder="Search books, supplies, materials…"
-                                className="input-sd pl-9 pr-4 h-[38px] text-[13px]"
+                                className="input-sd !pl-10 pr-4 h-[38px] text-[13px]"
                                 style={{ borderRadius: '8px' }}
                             />
                         </div>
                     </form>
 
-                    {/* ── NAV LINKS ── */}
                     <nav className="hidden lg:flex items-center gap-1">
                         {navLinks.map(link => (
                             <Link
@@ -148,10 +151,8 @@ export default function Navbar() {
 
                     <div className="flex-1 lg:flex-none" />
 
-                    {/* ── RIGHT SIDE ── */}
                     <div className="flex items-center gap-2">
 
-                        {/* Theme toggle */}
                         <button
                             onClick={handleToggleTheme}
                             className="btn-ghost w-8 h-8 p-0 hidden sm:flex items-center justify-center text-base"
@@ -163,7 +164,6 @@ export default function Navbar() {
 
                         {user ? (
                             <>
-                                {/* Notifications */}
                                 <Link
                                     href="/notifications"
                                     className="relative w-8 h-8 flex items-center justify-center rounded-lg text-base"
@@ -183,7 +183,6 @@ export default function Navbar() {
                                     </span>
                                 </Link>
 
-                                {/* Cart */}
                                 <Link
                                     href="/cart"
                                     className="relative w-8 h-8 flex items-center justify-center rounded-lg text-base"
@@ -205,7 +204,6 @@ export default function Navbar() {
                                     )}
                                 </Link>
 
-                                {/* User dropdown */}
                                 <div className="relative" ref={dropdownRef}>
                                     <button
                                         onClick={() => setDropdownOpen(v => !v)}
@@ -217,7 +215,7 @@ export default function Navbar() {
                                         }}
                                     >
                                         <div
-                                            className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0"
+                                            className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] text-white flex-shrink-0"
                                             style={{ background: 'var(--accent)' }}
                                         >
                                             {user.firstName?.[0]}{user.lastName?.[0]}
@@ -290,7 +288,6 @@ export default function Navbar() {
                             </>
                         )}
 
-                        {/* Mobile menu toggle */}
                         <button
                             onClick={() => setMobileOpen(v => !v)}
                             className="btn-ghost w-8 h-8 p-0 flex items-center justify-center lg:hidden"
@@ -302,10 +299,9 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* ── MOBILE MENU ── */}
             {mobileOpen && (
                 <div style={{ borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
-                    <div className="section-sd py-3 flex flex-col gap-1">
+                    <div className="section-sd py-3 flex flex-col gap-1" style={{ padding: '10px 0 10px 0' }}>
                         <form onSubmit={handleSearch} className="mb-2 md:hidden">
                             <div className="relative">
                                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }}>🔍</span>
@@ -314,7 +310,7 @@ export default function Navbar() {
                                     value={searchQuery}
                                     onChange={e => setSearchQuery(e.target.value)}
                                     placeholder="Search…"
-                                    className="input-sd pl-9 h-[38px] text-[13px]"
+                                    className="input-sd !pl-10 h-[38px] text-[13px]"
                                 />
                             </div>
                         </form>

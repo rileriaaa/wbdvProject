@@ -47,7 +47,7 @@ export default function NotFound() {
                                         name="q"
                                         type="text"
                                         placeholder="Try searching for something…"
-                                        className="input-sd pl-9 h-[44px] text-[14px]"
+                                        className="input-sd !pl-10 h-[44px] text-[14px]"
                                     />
                                 </div>
                                 <button type="submit" className="btn-primary h-[44px] px-5 text-[14px] flex-shrink-0">Search</button>

@@ -11,6 +11,7 @@ type NavItem =
     | { divider: true; label?: string }
 
 const NAV: NavItem[] = [
+    { divider: true, label: 'User Profile' },
     { href: '/profile', icon: '👤', label: 'My Profile' },
     { href: '/profile/orders', icon: '📦', label: 'Purchase History' },
     { href: '/profile/settings', icon: '⚙️', label: 'Account Settings' },
@@ -25,12 +26,22 @@ const NAV: NavItem[] = [
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
     const [user, setUser] = useState<User | null>(null)
+    const navHrefs = NAV.flatMap(item => ('href' in item ? [item.href] : []))
 
     useEffect(() => { setUser(getUser()) }, [])
 
     function isActive(href: string) {
-        if (href === '/profile') return pathname === '/profile'
-        return pathname.startsWith(href)
+        if (pathname === href) return true
+
+
+        const nestedMatch = pathname.startsWith(`${href}/`)
+        if (!nestedMatch) return false
+
+        return !navHrefs.some(otherHref =>
+            otherHref !== href
+            && otherHref.startsWith(`${href}/`)
+            && (pathname === otherHref || pathname.startsWith(`${otherHref}/`))
+        )
     }
 
     return (

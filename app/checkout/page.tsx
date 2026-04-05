@@ -165,7 +165,7 @@ export default function CheckoutPage() {
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-8 md:py-12">
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0px 50px 0px' }}>
                 <h1 className="text-[26px] font-bold mb-6" style={{ color: 'var(--text)' }}>Checkout</h1>
                 <StepIndicator />
 
@@ -232,7 +232,7 @@ export default function CheckoutPage() {
                         {step === 2 && (
                             <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
                                 <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
-                                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white">③ Payment Option</h2>
+                                    <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }} >③ Payment Option</h2>
                                 </div>
                                 <div className="p-5 flex flex-col gap-3">
                                     {PAYMENT_METHODS.map(m => (

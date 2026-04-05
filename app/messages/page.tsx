@@ -85,26 +85,22 @@ function MessagesContent() {
     return (
         <div style={{ background: 'var(--bg)', height: 'calc(100vh - 60px)', display: 'flex', overflow: 'hidden' }}>
 
-            {/* ── INBOX SIDEBAR ── */}
             <div
                 className="w-[300px] flex-shrink-0 flex flex-col hidden md:flex"
                 style={{ borderRight: '1px solid var(--border)' }}
             >
-                {/* Header */}
                 <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
                     <h2 className="text-[15px] font-bold" style={{ color: 'var(--text)' }}>Messages</h2>
                     <button className="btn-ghost w-8 h-8 p-0 flex items-center justify-center text-lg">✏️</button>
                 </div>
 
-                {/* Search */}
                 <div className="px-3 py-2" style={{ borderBottom: '1px solid var(--border)' }}>
                     <div className="relative">
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px]" style={{ color: 'var(--text-muted)' }}>🔍</span>
-                        <input type="text" placeholder="Search conversations…" className="input-sd pl-8 h-[34px] text-[12px]" />
+                        <input type="text" placeholder="Search conversations…" className="input-sd !pl-8 h-[34px] text-[12px]" />
                     </div>
                 </div>
 
-                {/* Conversation list */}
                 <div className="flex-1 overflow-y-auto">
                     {CONVERSATIONS.map(c => (
                         <button
@@ -140,9 +136,7 @@ function MessagesContent() {
                 </div>
             </div>
 
-            {/* ── CONVERSATION THREAD ── */}
             <div className="flex-1 flex flex-col min-w-0">
-                {/* Thread header */}
                 <div className="flex items-center gap-3 px-5 py-3 flex-shrink-0" style={{ borderBottom: '1px solid var(--border)' }}>
                     <div className="w-9 h-9 rounded-full flex items-center justify-center text-[11px] font-bold text-white" style={{ background: 'var(--accent)' }}>
                         {activeConvo.initials}
@@ -151,7 +145,6 @@ function MessagesContent() {
                         <div className="text-[14px] font-semibold" style={{ color: 'var(--text)' }}>{activeConvo.name}</div>
                         <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>Last seen 2h ago</div>
                     </div>
-                    {/* Linked product */}
                     <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border)' }}>
                         <span className="text-sm">📗</span>
                         <div>
@@ -162,7 +155,6 @@ function MessagesContent() {
                     <button className="btn-secondary text-[12px] py-1.5 px-3 flex-shrink-0">Report</button>
                 </div>
 
-                {/* Messages */}
                 <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-3">
                     {messages.map(msg => (
                         <div key={msg.id} className={`flex ${msg.from === 'me' ? 'justify-end' : 'justify-start'}`}>
@@ -188,7 +180,6 @@ function MessagesContent() {
                     <div ref={messagesEndRef} />
                 </div>
 
-                {/* Input */}
                 <form
                     onSubmit={sendMessage}
                     className="flex items-center gap-3 px-4 py-3 flex-shrink-0"

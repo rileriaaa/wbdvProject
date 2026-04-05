@@ -17,15 +17,15 @@ const AUTH_ONLY = [
   '/signup',
 ]
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Read auth cookie — we set this on login, remove on logout
+  // Read auth cookie - we set this on login, remove on logout
   const isLoggedIn = request.cookies.has('sd_auth')
 
   // Check if route is protected
   const isProtected = PROTECTED.some(path => pathname.startsWith(path))
-  const isAuthOnly  = AUTH_ONLY.some(path  => pathname.startsWith(path))
+  const isAuthOnly = AUTH_ONLY.some(path => pathname.startsWith(path))
 
   // Redirect logged-out users away from protected pages
   if (isProtected && !isLoggedIn) {

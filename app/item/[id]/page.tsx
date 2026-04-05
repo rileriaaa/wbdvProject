@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { PRODUCTS, SELLERS } from '../../(lib)/mockdata'
-import { addToCart, toggleWishlist, isWishlisted } from '../../(lib)/storage'
+import { addToCart, toggleWishlist, isWishlisted, isLoggedIn } from '../../(lib)/storage'
 import ProductCard from '../../(comps)/productCard'
-import type { Product } from '../../../types/index'
+import type { Product } from '@/types'
 
 const CONDITION_BADGE: Record<string, string> = {
     'Like New': 'badge-green',
@@ -50,12 +50,14 @@ export default function ItemDetailPage() {
     ]
 
     function handleAddToCart() {
+        if (!isLoggedIn()) { router.push('/login?redirect=/cart'); return }
         addToCart(product!, qty)
         setAdded(true)
         setTimeout(() => setAdded(false), 2000)
     }
 
     function handleWishlist() {
+        if (!isLoggedIn()) { router.push('/login?redirect=/profile'); return }
         const updated = toggleWishlist(product!)
         setWishlisted(updated.some(i => i.id === product!.id))
     }
@@ -64,7 +66,7 @@ export default function ItemDetailPage() {
         <div style={{ background: 'var(--bg)' }}>
 
             <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-subtle)' }}>
-                <div className="section-sd py-2.5" >
+                <div className="section-sd py-2.5">
                     <nav className="flex items-center gap-2 text-[12px]" style={{ color: 'var(--text-muted)' }}>
                         <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
                         <span>›</span>
@@ -77,7 +79,7 @@ export default function ItemDetailPage() {
                 </div>
             </div>
 
-            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0 ' }}>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
 
@@ -210,13 +212,16 @@ export default function ItemDetailPage() {
                                 {wishlisted ? '❤️ Saved to Wishlist' : '🤍 Add to Wishlist'}
                             </button>
 
-                            <Link
-                                href={`/messages?seller=${product.seller.id}`}
+                            <button
+                                onClick={() => {
+                                    if (!isLoggedIn()) { router.push('/login?redirect=/messages'); return }
+                                    router.push(`/messages?seller=${product.seller.id}`)
+                                }}
                                 className="btn-ghost h-[44px] text-[14px] w-full flex items-center justify-center gap-2"
-                                style={{ border: '1.5px solid var(--border)' }}
+                                style={{ border: '1.5px solid var(--border)', cursor: 'pointer' }}
                             >
                                 💬 Message Seller
-                            </Link>
+                            </button>
                         </div>
 
                         <div
@@ -260,7 +265,7 @@ export default function ItemDetailPage() {
                         className="rounded-xl overflow-hidden"
                         style={{ border: '1.5px solid var(--border)' }}
                     >
-                        <div className="px-5 py-3" style={{ background: 'var(--text)', borderBottom: '1.5px solid var(--border)' }}>
+                        <div className="px-5 py-3" style={{ background: 'var(--dark-surface)', borderBottom: '1.5px solid var(--border)' }}>
                             <h2 className="text-[13px] font-bold uppercase tracking-widest text-white">Product Description</h2>
                         </div>
                         <div className="p-5" style={{ background: 'var(--bg-subtle)' }}>
@@ -271,11 +276,10 @@ export default function ItemDetailPage() {
 
                 <div className="mb-12">
                     <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
-                        <div className="px-5 py-3" style={{ background: 'var(--text)' }}>
+                        <div className="px-5 py-3" style={{ background: 'var(--dark-surface)' }}>
                             <h2 className="text-[13px] font-bold uppercase tracking-widest text-white">Ratings &amp; Reviews</h2>
                         </div>
                         <div className="p-5" style={{ background: 'var(--bg-subtle)' }}>
-                            {/* Summary */}
                             <div className="flex items-start gap-8 mb-6 pb-6" style={{ borderBottom: '1px solid var(--border)' }}>
                                 <div className="text-center flex-shrink-0">
                                     <div className="text-[48px] font-bold leading-none" style={{ color: 'var(--text)' }}>{product.rating}</div>

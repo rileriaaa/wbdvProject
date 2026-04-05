@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import ProductCard from './(comps)/productCard'
 import { PRODUCTS, CATEGORIES } from './(lib)/mockdata'
-import type { Product, Category } from '@/types'
+import { getUser } from './(lib)/storage'
+import type { Product, Category, User } from '@/types'
 
 const STATS = [
   { value: '1,200+', label: 'Active Listings' },
@@ -45,10 +46,12 @@ export default function LandingPage() {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [activeCategory, setActiveCategory] = useState<string>('all')
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     const sorted = (PRODUCTS as Product[]).sort((a, b) => b.rating - a.rating)
     setFeaturedProducts(sorted.slice(0, 8))
+    setUser(getUser())
   }, [])
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
@@ -166,11 +169,11 @@ export default function LandingPage() {
                   Browse Listings
                 </Link>
                 <Link
-                  href="/signup"
+                  href={user ? '/profile/seller/listings/new' : '/signup'}
                   className="text-[14px] font-medium flex items-center gap-1.5"
                   style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}
                 >
-                  Sign Up Free →
+                  {user ? 'Start Selling →' : 'Sign Up Free →'}
                 </Link>
               </div>
             </div>
@@ -369,8 +372,8 @@ export default function LandingPage() {
             unused books and supplies.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Link href="/signup" className="btn-primary text-[14px] py-3 px-8">
-              Create Free Account
+            <Link href={user ? '/seller/listings/new' : '/signup'} className="btn-primary text-[14px] py-3 px-8">
+              {user ? 'Create a Listing' : 'Create Free Account'}
             </Link>
             <Link href="/browse" className="btn-secondary text-[14px] py-3 px-8">
               Browse Listings

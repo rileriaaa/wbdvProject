@@ -196,7 +196,7 @@ export const MOCK_USER: User = {
   avatar: null,
   role: 'both' as const,
   rating: 4.8,
-  memberSince: '2024',
+  memberSince: '2016',
   school: 'Polytechnic University of the Philippines',
 }
 

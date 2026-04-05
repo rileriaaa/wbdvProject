@@ -1,5 +1,25 @@
 import type { User, CartItem, Product, Theme } from '@/types'
 
+const AUTH_STATE_EVENT = 'sd:auth-changed'
+
+function dispatchAuthStateChange(): void {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new Event(AUTH_STATE_EVENT))
+}
+
+export function onAuthStateChange(callback: () => void): () => void {
+  if (typeof window === 'undefined') return () => {}
+
+  const handleChange = () => callback()
+  window.addEventListener(AUTH_STATE_EVENT, handleChange)
+  window.addEventListener('storage', handleChange)
+
+  return () => {
+    window.removeEventListener(AUTH_STATE_EVENT, handleChange)
+    window.removeEventListener('storage', handleChange)
+  }
+}
+
 export function getUser(): User | null {
   if (typeof window === 'undefined') return null
   try {
@@ -11,11 +31,13 @@ export function getUser(): User | null {
 export function setUser(user: User): void {
   if (typeof window === 'undefined') return
   localStorage.setItem('sd_user', JSON.stringify(user))
+  dispatchAuthStateChange()
 }
 
 export function removeUser(): void {
   if (typeof window === 'undefined') return
   localStorage.removeItem('sd_user')
+  dispatchAuthStateChange()
 }
 
 export function isLoggedIn(): boolean {
@@ -113,9 +135,11 @@ export function setAuthCookie(): void {
   // Set cookie that expires in 7 days
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
   document.cookie = `sd_auth=1; path=/; expires=${expires}; SameSite=Lax`
+  dispatchAuthStateChange()
 }
 
 export function removeAuthCookie(): void {
   if (typeof document === 'undefined') return
   document.cookie = 'sd_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax'
+  dispatchAuthStateChange()
 }

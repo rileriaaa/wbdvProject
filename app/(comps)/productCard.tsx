@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { addToCart, toggleWishlist, isWishlisted } from '../(lib)/storage'
-import type { Product } from '@/types/index'
+import { useRouter } from 'next/navigation'
+import { addToCart, toggleWishlist, isWishlisted, isLoggedIn } from '../(lib)/storage'
+import type { Product } from '@/types'
 
 interface ProductCardProps {
     product: Product
@@ -26,6 +27,7 @@ const CONDITION_BADGE: Record<string, string> = {
 }
 
 export default function ProductCard({ product, onCartUpdate }: ProductCardProps) {
+    const router = useRouter()
     const [wishlisted, setWishlisted] = useState<boolean>(() => isWishlisted(product.id))
     const [added, setAdded] = useState<boolean>(false)
 
@@ -39,6 +41,10 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
     function handleAddToCart(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         e.stopPropagation()
+        if (!isLoggedIn()) {
+            router.push('/login?redirect=/cart')
+            return
+        }
         addToCart(product)
         onCartUpdate?.()
         setAdded(true)
@@ -48,6 +54,10 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
     function handleWishlist(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         e.stopPropagation()
+        if (!isLoggedIn()) {
+            router.push('/login?redirect=/profile')
+            return
+        }
         const updated = toggleWishlist(product)
         setWishlisted(updated.some(i => i.id === product.id))
     }
@@ -58,6 +68,7 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                 className="card-sd group cursor-pointer h-full flex flex-col"
                 style={{ borderRadius: 'var(--radius-md)' }}
             >
+                {/* ── IMAGE ── */}
                 <div
                     className="relative overflow-hidden"
                     style={{
@@ -66,16 +77,19 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                         borderBottom: '1px solid var(--border)',
                     }}
                 >
+                    {/* Placeholder */}
                     <div className="w-full h-full flex items-center justify-center text-5xl select-none">
                         {categoryIcon}
                     </div>
 
+                    {/* Discount badge */}
                     {discount !== null && (
                         <div className="absolute top-2 left-2 badge-sd badge-accent text-[10px] font-bold">
                             -{discount}%
                         </div>
                     )}
 
+                    {/* Wishlist button */}
                     <button
                         onClick={handleWishlist}
                         className="absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center text-sm
@@ -91,7 +105,9 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                     </button>
                 </div>
 
+                {/* ── CONTENT ── */}
                 <div className="p-3 flex flex-col gap-2 flex-1">
+                    {/* Condition + category */}
                     <div className="flex items-center gap-1.5 flex-wrap">
                         <span className={`badge-sd ${conditionBadge} text-[10px]`}>
                             {product.condition}
@@ -101,6 +117,7 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                         </span>
                     </div>
 
+                    {/* Title */}
                     <h3
                         className="text-[13px] font-semibold leading-snug line-clamp-2 flex-1"
                         style={{ color: 'var(--text)' }}
@@ -108,6 +125,7 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                         {product.title}
                     </h3>
 
+                    {/* Rating */}
                     <div className="flex items-center gap-1">
                         <span className="stars text-[11px]">
                             {'★'.repeat(Math.round(product.rating))}
@@ -118,6 +136,7 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                         </span>
                     </div>
 
+                    {/* Price + cart button */}
                     <div className="flex items-center justify-between gap-2 mt-auto pt-1">
                         <div className="flex items-baseline gap-1.5">
                             <span className="text-[16px] font-bold" style={{ color: 'var(--text)' }}>
@@ -143,6 +162,7 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
                         </button>
                     </div>
 
+                    {/* Seller */}
                     <p className="text-[11px] truncate" style={{ color: 'var(--text-muted)' }}>
                         by {product.seller.name}
                     </p>

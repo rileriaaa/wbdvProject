@@ -155,7 +155,7 @@ function BrowseContent() {
                             value={query}
                             onChange={e => setQuery(e.target.value)}
                             placeholder="Search books, supplies, materials…"
-                            className="input-sd pl-9 h-[40px] text-[13px]"
+                            className="input-sd !pl-10 h-[40px] text-[13px]"
                         />
                     </form>
 

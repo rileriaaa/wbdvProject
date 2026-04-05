@@ -2,6 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa6'
+import type { IconType } from 'react-icons'
+
+const socialLinks: { icon: IconType; title: string; href: string }[] = [
+    { icon: FaFacebook, title: 'Facebook', href: 'https://www.facebook.com/shlynavtiff/' },
+    { icon: FaInstagram, title: 'Instagram', href: 'https://www.instagram.com/rileriaaa/' },
+    { icon: FaGithub, title: 'Github', href: 'https://github.com/rileriaaa' },
+]
 
 export default function ContactPage() {
     const [form, setForm] = useState({ name: '', email: '', subject: 'General Inquiry', message: '' })
@@ -34,7 +43,7 @@ export default function ContactPage() {
     return (
         <div style={{ background: 'var(--bg)' }}>
 
-            <section className="py-12 md:py-16" style={{ background: 'var(--text)' }}>
+            <section className="py-12 md:py-16" style={{ background: 'var(--dark-surface)' }}>
                 <div className="section-sd text-center">
                     <p className="text-[12px] font-bold uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>We&apos;re Here to Help</p>
                     <h1 className="text-[32px] font-bold text-white mb-2">Contact Us</h1>
@@ -113,9 +122,23 @@ export default function ContactPage() {
                         <div className="p-5 rounded-xl" style={{ background: 'var(--bg-subtle)', border: '1.5px solid var(--border)' }}>
                             <h3 className="text-[12px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Follow Us</h3>
                             <div className="flex gap-2">
-                                {['Facebook', 'Instagram', 'Twitter/X'].map(s => (
-                                    <a key={s} href="#" className="flex-1 py-2 rounded-lg text-center text-[12px] font-medium" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)', color: 'var(--text-secondary)', textDecoration: 'none' }}>
-                                        {s[0]}
+                                {socialLinks.map(s => (
+                                    <a
+                                        key={s.title}
+                                        href={s.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        title={s.title}
+                                        aria-label={s.title}
+                                        className="w-8 h-8 rounded-lg flex items-center justify-center"
+                                        style={{
+                                            background: 'var(--bg-muted)',
+                                            border: '1px solid var(--border)',
+                                            color: 'var(--text-secondary)',
+                                            textDecoration: 'none',
+                                        }}
+                                    >
+                                        <s.icon size={14} />
                                     </a>
                                 ))}
                             </div>

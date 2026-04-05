@@ -111,7 +111,7 @@ export default function Footer() {
 
                         <div>
                             <h3 className="text-[12px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>
-                                Shop
+                                Quick Links
                             </h3>
                             <FooterLinkList links={shopLinks} />
                         </div>

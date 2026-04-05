@@ -55,19 +55,21 @@ export default function CartPage() {
 
     if (cart.length === 0) {
         return (
-            <div className="section-sd py-24 text-center" style={{ padding: '50px 0 50px 0' }}>
-                <div className="text-6xl mb-4">🛒</div>
-                <h2 className="text-[24px] font-bold mb-2" style={{ color: 'var(--text)' }}>Your cart is empty</h2>
-                <p className="text-[14px] mb-6" style={{ color: 'var(--text-secondary)' }}>
-                    Looks like you haven&apos;t added anything yet.
-                </p>
-                <Link href="/browse" className="btn-primary text-[14px]">Browse Listings</Link>
+            <div style={{ background: 'var(--bg)', minHeight: '60vh', padding: '50px 0' }}>
+                <div className="section-sd min-h-[60vh] flex flex-col items-center justify-center text-center">
+                    <div className="text-6xl mb-4">🛒</div>
+                    <h2 className="text-[24px] font-bold mb-2" style={{ color: 'var(--text)' }}>Your cart is empty</h2>
+                    <p className="text-[14px] mb-6" style={{ color: 'var(--text-secondary)' }}>
+                        Looks like you haven&apos;t added anything yet.
+                    </p>
+                    <Link href="/browse" className="btn-primary text-[14px]">Browse Listings</Link>
+                </div>
             </div>
         )
     }
 
     return (
-        <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '50px 0 50px 0' }}>
+        <div style={{ background: 'var(--bg)', minHeight: '70vh', padding: '50px 0 50px 0' }}>
             <div className="section-sd py-8 md:py-12" >
 
                 <div className="flex items-center justify-between mb-8">
