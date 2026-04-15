@@ -90,6 +90,51 @@ export default function Navbar() {
         { href: '/profile/seller/orders', icon: '📊', label: 'Orders Dashboard' },
     ]
 
+    const megaMenuColumns = [
+        {
+            heading: "End of Season Sale",
+            links: [{ label: "Extra 30% off", href: "/sale" }],
+        },
+        {
+            heading: "Featured",
+            links: [
+                { label: "New Arrivals", href: "/browse" },
+                { label: "Bestsellers", href: "/browse" },
+                { label: "Shop All Sale", href: "/browse" },
+            ],
+        },
+        {
+            heading: "Quick Links",
+            links: [
+                { label: "Browse All", href: "/new-arrivals" },
+                { label: "Textbooks", href: "/bestsellers" },
+                { label: "School Supplies", href: "/sale/all" },
+                { label: "Art Materials", href: "/sale/all" },
+                { label: "Electronics", href: "/sale/all" },
+            ],
+        },
+        {
+            heading: "Account",
+            links: [
+                { label: "My Profile", href: "/new-arrivals" },
+                { label: "Purchase History", href: "/bestsellers" },
+                { label: "My Cart", href: "/sale/all" },
+                { label: "Sell an Item", href: "/sale/all" },
+                { label: "Account Settings", href: "/sale/all" },
+            ],
+        },
+        {
+            heading: "Support",
+            links: [
+                { label: "About Us", href: "/new-arrivals" },
+                { label: "FAQs", href: "/bestsellers" },
+                { label: "Contact Us", href: "/sale/all" },
+                { label: "Terms of Service", href: "/sale/all" },
+                { label: "Privacy Policy", href: "/sale/all" },
+            ],
+        },
+    ]
+
     return (
         <header
             className="sticky top-0 z-50 w-full transition-all duration-200"
@@ -300,42 +345,51 @@ export default function Navbar() {
             </div>
 
             {mobileOpen && (
-                <div style={{ borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
-                    <div className="section-sd py-3 flex flex-col gap-1" style={{ padding: '10px 0 10px 0' }}>
-                        <form onSubmit={handleSearch} className="mb-2 md:hidden">
-                            <div className="relative">
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }}>🔍</span>
-                                <input
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={e => setSearchQuery(e.target.value)}
-                                    placeholder="Search…"
-                                    className="input-sd !pl-10 h-[38px] text-[13px]"
-                                />
-                            </div>
-                        </form>
-
-                        {navLinks.map(link => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="py-2.5 px-3 rounded-lg text-[14px] font-medium"
-                                style={{
-                                    color: isActive(link.href) ? 'var(--accent)' : 'var(--text)',
-                                    textDecoration: 'none',
-                                    background: isActive(link.href) ? 'var(--accent-light)' : 'transparent',
-                                }}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-
-                        {!user && (
-                            <div className="flex gap-2 mt-2 pt-2" style={{ borderTop: '1px solid var(--border)' }}>
-                                <Link href="/login" className="btn-secondary flex-1 text-center text-[13px]">Log In</Link>
-                                <Link href="/signup" className="btn-primary  flex-1 text-center text-[13px]">Sign Up</Link>
-                            </div>
-                        )}
+                <div style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    right: 0,
+                    background: 'var(--bg)',
+                    borderTop: '1px solid var(--border)',
+                    boxShadow: 'var(--shadow-lg)',
+                    zIndex: 49,
+                }}>
+                    <div className="section-sd" style={{ padding: '28px 32px 32px' }}>
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: `repeat(${megaMenuColumns.length}, minmax(0, 1fr))`,
+                            gap: '0 24px',
+                        }}>
+                            {megaMenuColumns.map(col => (
+                                <div key={col.heading}>
+                                    <p style={{
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        color: 'var(--text)',
+                                        margin: '0 0 10px',
+                                    }}>
+                                        {col.heading}
+                                    </p>
+                                    {col.links.map(link => (
+                                        <Link
+                                            // key={link.href}
+                                            href={link.href}
+                                            style={{
+                                                display: 'block',
+                                                fontSize: '13px',
+                                                color: 'var(--text-secondary)',
+                                                textDecoration: 'none',
+                                                padding: '3px 0',
+                                                lineHeight: 1.6,
+                                            }}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
