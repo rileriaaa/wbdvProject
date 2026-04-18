@@ -1,0 +1,267 @@
+============================================================
+       SCHOLAR'S DEN — PROJECT PRESENTATION SCRIPT
+              WBDV111 | Group 1 | BSCS 1-Y2-2
+============================================================
+
+------------------------------------------------------------
+BEFORE THE MEETING
+------------------------------------------------------------
+- Open the Scholar's Den website on your browser (localhost:3000)
+- Make sure desktop clock/time is visible on screen
+- Start recording (Information Architect handles this)
+- Everyone should be on camera
+
+============================================================
+1. TEAM LEADER — Ashley James R. Naval
+============================================================
+
+[OPENING]
+"Good [morning/afternoon], ma'am/sir. I am Ashley James R. Naval,
+the Team Leader of Group 1. Today, we will be presenting our
+proposed project for WBDV111 — Scholar's Den."
+
+[PROJECT OVERVIEW]
+"Scholar's Den is a student-focused online marketplace designed
+for buying and selling textbooks, school supplies, and educational
+materials. The platform directly addresses the challenge students
+face in finding affordable and quality academic resources.
+
+Instead of going to multiple stores or social media groups,
+Scholar's Den gives students one centralized platform where they
+can browse listings, purchase items, and even sell their own
+materials — all within a trusted student community."
+
+[DESIGN & FEATURES]
+"The platform is built as a fully frontend-only application using
+Next.js, TypeScript, and Tailwind CSS. Since there is no backend
+or database, all dynamic functionality — including user
+authentication, cart management, and order tracking — is
+simulated through React state, static JSON data, and localStorage.
+
+Key features of Scholar's Den include:
+
+  • A landing page with featured listings, category browsing,
+    and a search bar accessible from every page
+
+  • A Browse and Search page where users can filter listings
+    by category, price range, and item condition
+
+  • An Item Detail page showing photos, ratings, seller
+    information, and related items
+
+  • A full Cart and Checkout flow with shipping options,
+    payment methods, and order confirmation
+
+  • A Messaging system so buyers can talk to sellers directly
+
+  • A Profile section covering purchase history, wishlist,
+    account settings, and a full Seller Dashboard
+
+  • Protected routes — pages like Cart, Profile, and Messages
+    are only accessible to logged-in users
+
+  • Dark mode support across all pages"
+
+[WHAT WE ACCOMPLISHED TODAY]
+"For today's progress, our team has completed the following:
+
+  • All 27 pages of the website have been designed and built
+  • The sitemap and wireframes have been finalized
+  • The project proposal document has been completed and submitted
+  • Route protection using Next.js middleware has been implemented
+  • The mobile navigation has been updated to a slide-in drawer
+    that does not push page content when opened"
+
+[HOW TO NAVIGATE]
+"Let me walk you through how to navigate the site.
+
+  [Show on screen while speaking]
+
+  • From the Landing Page, you can browse featured listings,
+    use the search bar, or filter by category using the pills
+    below the navbar
+
+  • Clicking any product takes you to the Item Detail Page,
+    where you can add it to your cart or wishlist — though
+    these actions require you to be logged in
+
+  • The Sign Up page lets you register as a buyer, seller,
+    or both. The Log In page accepts any credentials for
+    demo purposes and redirects you back to where you were
+
+  • Once logged in, the navbar shows your cart, notifications,
+    and a user dropdown with links to your profile and
+    seller dashboard
+
+  • On mobile, the hamburger icon opens a slide-in drawer
+    from the right side with all navigation links
+
+  • The Browse page has a filter sidebar for category, price
+    range, and condition, with active filter chips shown above
+    the product grid"
+
+[CLOSING]
+"This meeting was organized by myself, Ashley James R. Naval,
+as Team Leader. I will now pass it on to our Information
+Architect, Chris Hular, to discuss the sitemap and wireframes."
+
+
+============================================================
+2. INFORMATION ARCHITECT — Chris Hular
+   (Also handles recording — make sure clock is visible)
+============================================================
+
+[OPENING]
+"Thank you, Ashley. I am Chris Hular, the Information Architect
+of Group 1. I am also in charge of recording this meeting.
+As you can see on screen, today's date and time are visible."
+
+[SITEMAP]
+"I will now explain the site map of Scholar's Den.
+
+  [Show the Sitemap tab on the wireframes file or website]
+
+The sitemap is organized into 8 main sections:
+
+  1. Home / Auth — Landing Page, Sign Up, and Log In
+  2. Browse & Search — the main product browsing page,
+     which handles all filter states through URL query
+     parameters like ?cat=, ?price=, and ?q=
+  3. Item Listing — Item Detail Page and the public
+     Seller Profile Page
+  4. Cart & Checkout — Cart, Checkout, Order Confirmation,
+     and Order Details
+  5. Messages — Messages Index, Conversation Thread,
+     and Notifications
+  6. Profile — My Profile, Purchase History, Leave a Review,
+     and Account Settings
+  7. Seller Dashboard — Manage Listings, Add/Edit Product,
+     and Orders Dashboard, all nested under /profile/seller/
+  8. Other Pages — About, FAQs, Contact Us, Terms of Service,
+     Privacy Policy, and the 404 Error Page
+
+The routing follows Next.js App Router conventions, where the
+folder structure maps directly to the URL. Dynamic routes
+like /item/[id] and /seller/[id] are used for product and
+seller pages respectively."
+
+[WIREFRAMES]
+"The wireframes were built as a single HTML file with tabbed
+navigation, allowing us to view all 27 wireframes in one place.
+Each wireframe follows a lo-fi aesthetic with gray placeholder
+bars, browser chrome frames, and numbered annotations explaining
+each section.
+
+  [Flip through a few wireframe tabs while speaking]
+
+The wireframes cover every page in the sitemap, including both
+logged-in and logged-out states of the navbar, and all
+interactive components like forms, filters, and modals."
+
+[CLOSING]
+"That covers the sitemap and wireframes. I will now pass it
+on to our Content Manager."
+
+
+============================================================
+3. CONTENT MANAGER — Karl Justin Salas & April Jane Salvador
+============================================================
+
+[OPENING]
+"Hello, I am [Name], one of the Content Managers for Group 1."
+
+[CONTENT SOURCING]
+"We began looking for content once the sitemap and wireframes
+were finalized, so we had a clear picture of what each page
+needed.
+
+For the product listings and mock data, we based the content
+on commonly used textbooks and school supplies familiar to
+college students — items like Calculus by James Stewart,
+Engineering drawing sets, and scientific calculators.
+
+The platform uses static JSON data to simulate a real product
+catalog. All product names, descriptions, prices, seller
+information, and tags were written by our team.
+
+For the copy on pages like About, FAQs, Contact, Terms of
+Service, and Privacy Policy, we referenced similar student
+marketplace platforms and adapted the language to fit
+Scholar's Den's tone — friendly, student-focused, and clear.
+
+All content is original and written specifically for this
+project. No content was taken from external sources without
+adaptation."
+
+[CLOSING]
+"That covers our content sourcing process. I will now pass
+it on to our UI/UX Designers."
+
+
+============================================================
+4. UI/UX DESIGNER — Kurt Angelo Aves & Blu Oloquina
+============================================================
+
+[OPENING]
+"Hello, I am [Name], one of the UI/UX Designers for Group 1."
+
+[DESIGN PROCESS]
+"We started working on the visual design after the wireframes
+were approved. Our design direction for Scholar's Den is a
+clean, modern editorial style — white backgrounds, sharp
+typography, and a strong accent color.
+
+For the design application, we used Figma to plan the visual
+system before implementation. The actual UI was then built
+directly in code using Tailwind CSS v4.
+
+Our color system uses CSS variables for both light and dark
+mode. The primary accent color is a warm orange-red — hex
+#d4522a — which gives the platform a distinct identity that
+stands out from typical blue-heavy e-commerce sites.
+
+For typography, we used DM Sans as the primary font for its
+clean, modern feel, and Instrument Serif as a display font
+for headings, giving the site a refined editorial quality.
+Both fonts are loaded from Google Fonts."
+
+[MOCKUPS]
+"  [Show the actual website or the PDF wireframes]
+
+For the mockups, all 27 pages were designed with full
+responsiveness in mind. Every page works across desktop,
+tablet, and mobile breakpoints.
+
+Key design decisions include:
+
+  • The dark hero sections on the Landing Page, About Page,
+    Login and Signup use a fixed dark surface color that
+    stays dark in both light and dark mode, while the rest
+    of the UI adapts to the user's theme preference
+
+  • Product cards use a hover elevation effect with a subtle
+    shadow and upward translate to give depth and interactivity
+
+  • The mobile navigation uses a slide-in drawer from the
+    right side with a blurred backdrop, instead of pushing
+    the page content down
+
+  • Form pages like Login, Signup, and Checkout use a
+    two-column split layout on desktop — a dark branded
+    panel on the left and the form on the right
+
+All icons used in the interface are emoji-based, requiring
+no external icon library and keeping the bundle size small."
+
+[CLOSING]
+"That covers our design process and mockups. Thank you for
+your time, ma'am/sir. We are open to any questions or
+feedback."
+
+
+============================================================
+END OF PRESENTATION
+============================================================
+"Thank you, ma'am/sir. That concludes our presentation for
+Scholar's Den — Group 1, BSCS 1-Y2-2, WBDV111."
+============================================================
