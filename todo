@@ -2,29 +2,38 @@
 # TODO
 fix unaligned icons
 add padding to pages
+  - mobile
+
+add database 
+  - user
+  - order history
+  - order progress
+
+
+
 
 landing page darkmode support
 landing page hero banner sign up for free fix when logged in
 
-fix hamburger menu, make it look like nike web
+
 
 cart function only when signed in
 
-✅ Available (no login needed)
+✅ Available (no login needed) //
 
 Browse / Search
 View Item Detail page
 View Seller Public Profile
 About, FAQs, Contact, Terms, Privacy
-Sign Up, Log In
+Sign Up, Log In 
 
-🔒 Should require login
+🔒 Should require login //
 
-Add to Cart → redirect to login
-Add to Wishlist → redirect to login
-Message Seller → redirect to login
-Checkout → already protected by middleware
-Everything in /profile/*, /messages, /notifications, /orders
+Add to Cart → redirect to login //
+Add to Wishlist → redirect to login //
+Message Seller → redirect to login // 
+Checkout → already protected by middleware //
+Everything in /profile/*, /messages, /notifications, /orders //
 
 pages done
  - item/[id]
