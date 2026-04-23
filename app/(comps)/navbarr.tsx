@@ -75,9 +75,7 @@ export default function Navbar() {
 
     const navLinks = [
         { href: '/', label: 'Home' },
-        { href: '/browse', label: 'Browse' },
-        { href: '/faqs', label: 'FAQs' },
-        { href: '/about', label: 'About' },
+        { href: '/browse', label: 'Browse' }
     ]
 
     const isActive = (href: string) =>
@@ -162,7 +160,7 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    <form onSubmit={handleSearch} className="flex-1 max-w-[420px] mx-auto hidden md:flex items-center">
+                    <form onSubmit={handleSearch} className="flex-1 max-w-[580px] gap-4 mx-auto hidden md:flex items-center">
                         <div className="relative w-full">
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }}>
                                 🔍
@@ -176,23 +174,24 @@ export default function Navbar() {
                                 style={{ borderRadius: '8px' }}
                             />
                         </div>
+                        <nav className="hidden lg:flex items-center gap-1">
+                            {navLinks.map(link => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="btn-ghost text-[13px] py-1.5 px-3"
+                                    style={{
+                                        color: isActive(link.href) ? 'var(--accent)' : 'var(--text-secondary)',
+                                        fontWeight: isActive(link.href) ? 600 : 500,
+                                    }}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </nav>
                     </form>
 
-                    <nav className="hidden lg:flex items-center gap-1">
-                        {navLinks.map(link => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="btn-ghost text-[13px] py-1.5 px-3"
-                                style={{
-                                    color: isActive(link.href) ? 'var(--accent)' : 'var(--text-secondary)',
-                                    fontWeight: isActive(link.href) ? 600 : 500,
-                                }}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </nav>
+
 
                     <div className="flex-1 lg:flex-none" />
 
@@ -209,6 +208,25 @@ export default function Navbar() {
 
                         {user ? (
                             <>
+                                <Link
+                                    href="/messages"
+                                    className="relative w-8 h-8 flex items-center justify-center rounded-lg text-base"
+                                    style={{
+                                        background: 'var(--bg-subtle)',
+                                        border: '1px solid var(--border)',
+                                        color: 'var(--text-secondary)',
+                                        textDecoration: 'none',
+                                    }}
+                                >
+                                    💬
+                                    <span
+                                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[9px] font-bold flex items-center justify-center text-white"
+                                        style={{ background: 'var(--accent)', border: '1.5px solid var(--bg)' }}
+                                    >
+                                        9+
+                                    </span>
+                                </Link>
+
                                 <Link
                                     href="/notifications"
                                     className="relative w-8 h-8 flex items-center justify-center rounded-lg text-base"
