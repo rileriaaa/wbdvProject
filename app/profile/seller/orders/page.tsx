@@ -61,7 +61,7 @@ export default function OrdersDashboardPage() {
                     <h2 className="text-[12px] font-bold uppercase tracking-widest text-white" style={{ color: 'var(--bg)' }}>Incoming Orders</h2>
                 </div>
 
-                <div className="flex items-center gap-1 px-5 pt-3" style={{ borderBottom: '1px solid var(--border)' }}>
+                <div className="flex items-center gap-1 px-5 pt-3 overflow-x-auto scrollbar-hide" style={{ borderBottom: '1px solid var(--border)' }}>
                     {tabs.map(tab => (
                         <button
                             key={tab}
@@ -81,7 +81,7 @@ export default function OrdersDashboardPage() {
                     ))}
                 </div>
 
-                <div className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-widest" style={{ background: 'var(--bg-subtle)', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
+                <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-widest" style={{ background: 'var(--bg-subtle)', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
                     <span>Order ID · Buyer</span>
                     <span className="text-center">Total</span>
                     <span className="text-center">Date</span>
@@ -92,35 +92,55 @@ export default function OrdersDashboardPage() {
                 {filtered.map((order, i) => (
                     <div
                         key={order.id}
-                        className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-4 items-center"
                         style={{ borderBottom: i < filtered.length - 1 ? '1px solid var(--border)' : 'none' }}
                     >
-                        <div>
-                            <div className="text-[13px] font-mono font-semibold" style={{ color: 'var(--text)' }}>{order.id}</div>
-                            <div className="text-[11px] flex items-center gap-1 mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white" style={{ background: 'var(--text-secondary)' }}>B</span>
-                                Buyer · {order.items.length} item{order.items.length > 1 ? 's' : ''}
+                        {/* Desktop row */}
+                        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-4 items-center">
+                            <div>
+                                <div className="text-[13px] font-mono font-semibold" style={{ color: 'var(--text)' }}>{order.id}</div>
+                                <div className="text-[11px] flex items-center gap-1 mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                                    <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white" style={{ background: 'var(--text-secondary)' }}>B</span>
+                                    Buyer · {order.items.length} item{order.items.length > 1 ? 's' : ''}
+                                </div>
+                            </div>
+                            <div className="text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>₱{order.total.toLocaleString()}</div>
+                            <div className="text-center text-[12px]" style={{ color: 'var(--text-secondary)' }}>{order.date}</div>
+                            <div className="flex justify-center">
+                                <span
+                                    className={`badge-sd text-[11px] ${STATUS_BADGE[order.status] ?? ''}`}
+                                    style={order.status === 'Cancelled' ? { background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca' } : {}}
+                                >
+                                    {order.status}
+                                </span>
+                            </div>
+                            <Link href={`/orders/${order.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">Details</Link>
+                        </div>
+
+                        {/* Mobile card */}
+                        <div className="flex md:hidden flex-col gap-2 px-4 py-4">
+                            <div className="flex items-start justify-between gap-2">
+                                <div>
+                                    <div className="text-[13px] font-mono font-semibold" style={{ color: 'var(--text)' }}>{order.id}</div>
+                                    <div className="text-[11px] flex items-center gap-1 mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                                        <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white" style={{ background: 'var(--text-secondary)' }}>B</span>
+                                        Buyer · {order.items.length} item{order.items.length > 1 ? 's' : ''}
+                                    </div>
+                                </div>
+                                <span
+                                    className={`badge-sd text-[11px] flex-shrink-0 ${STATUS_BADGE[order.status] ?? ''}`}
+                                    style={order.status === 'Cancelled' ? { background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca' } : {}}
+                                >
+                                    {order.status}
+                                </span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <span className="text-[14px] font-bold" style={{ color: 'var(--text)' }}>₱{order.total.toLocaleString()}</span>
+                                    <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>{order.date}</span>
+                                </div>
+                                <Link href={`/orders/${order.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">Details</Link>
                             </div>
                         </div>
-
-                        <div className="text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>
-                            ₱{order.total.toLocaleString()}
-                        </div>
-
-                        <div className="text-center text-[12px]" style={{ color: 'var(--text-secondary)' }}>{order.date}</div>
-
-                        <div className="flex justify-center">
-                            <span
-                                className={`badge-sd text-[11px] ${STATUS_BADGE[order.status] ?? ''}`}
-                                style={order.status === 'Cancelled' ? { background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca' } : {}}
-                            >
-                                {order.status}
-                            </span>
-                        </div>
-
-                        <Link href={`/orders/${order.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">
-                            Details
-                        </Link>
                     </div>
                 ))}
             </div>

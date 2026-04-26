@@ -20,7 +20,7 @@ export default function OrderConfirmPage() {
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-10 md:py-16" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-10 md:py-16" style={{ padding: '50px 10px 50px 10px' }}>
 
                 <div
                     className="rounded-2xl overflow-hidden mb-8 transition-all duration-500"

@@ -81,7 +81,7 @@ export default function FAQsPage() {
                 </div>
             </section>
 
-            <div className="section-sd py-10 md:py-14" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-10 md:py-14" style={{ padding: '50px 10px 50px 10px' }}>
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-start">
 
                     <div>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { FaFacebook, FaInstagram } from 'react-icons/fa'
-import { FaGithub } from 'react-icons/fa6'
+import { FaFacebook, FaInstagram, FaGithub } from 'react-icons/fa'
 import type { IconType } from 'react-icons'
+import '../globals.css'
 
 const shopLinks = [
     { href: '/browse', label: 'Browse All' },
@@ -135,16 +135,38 @@ export default function Footer() {
                         className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-10 pt-6"
                         style={{ borderTop: '1px solid var(--border)' }}
                     >
-                        <p className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
-                            developed by <a className='text-[#FFC0CB] font-bold' href="https://www.rileriaaa.me/" target='_blank'>rileriaaa.me</a>
-                        </p>
+                        <div className="flex items-center gap-1.5">
+                            <span className="text-[12px]" style={{ color: 'var(--text-muted)' }}>developed & designed by</span>
+                            <span className="relative flex h-[7px] w-[7px] flex-shrink-0">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: '#FF69B4' }} />
+                                <span className="relative inline-flex rounded-full h-[7px] w-[7px]" style={{ background: '#FF69B4' }} />
+                            </span>
+
+                            <a
+
+                                href="https://www.rileriaaa.me/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[12px] font-bold animated-credit"
+                                style={{
+                                    display: 'inline-block',
+                                    background: 'linear-gradient(90deg,#a855f7,#ec4899,#6366f1,#a855f7,#ec4899)',
+                                    backgroundSize: '200% auto',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                }}
+                            >
+                                rileriaaa.me
+                            </a>
+                        </div>
                         <div className="flex items-center gap-4">
                             <Link href="/terms-and-conditions" className="footer-link text-[12px]">Terms</Link>
                             <Link href="/privacy-policy" className="footer-link text-[12px]">Privacy</Link>
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer >
         </>
     )
 }

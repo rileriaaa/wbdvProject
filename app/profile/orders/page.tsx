@@ -21,7 +21,7 @@ export default function PurchaseHistoryPage() {
     const filtered = MOCK_ORDERS.filter(o => activeTab === 'All' || o.status === activeTab)
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 px-[10px]">
             <h1 className="text-[22px] font-bold" style={{ color: 'var(--text)' }}>Purchase History</h1>
 
             <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide" style={{ borderBottom: '1.5px solid var(--border)' }}>

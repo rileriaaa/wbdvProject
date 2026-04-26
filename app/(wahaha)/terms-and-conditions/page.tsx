@@ -44,22 +44,23 @@ const SECTIONS = [
         content: 'For questions about these Terms, contact us at legal@scholarsden.com or through our Contact Us page.'
     },
 ]
-
 export default function TermsPage() {
     return (
         <div style={{ background: 'var(--bg)' }}>
             <section className="py-12" style={{ background: 'var(--dark-surface)' }}>
-                <div className="section-sd">
+                {/* Added px-4 sm:px-6 for mobile padding */}
+                <div className="section-sd px-4 sm:px-6 lg:px-0">
                     <p className="text-[12px] font-bold uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>Legal</p>
                     <h1 className="text-[32px] font-bold text-white mb-2">Terms of Service</h1>
-                    <p className="text-[14px]" style={{ color: 'rgba(255,255,255,0.45)' }}>Last updated: January 1, 2024</p>
+                    <p className="text-[14px]" style={{ color: 'rgba(255,255,255,0.45)' }}>Last updated: April 26, 2026</p>
                 </div>
             </section>
 
-            <div className="section-sd py-12 md:py-16" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-12 md:py-16 px-4 sm:px-6 lg:px-0" style={{ padding: '50px 10px 50px 10px' }}>
                 <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 items-start">
 
-                    <nav className="sticky top-[80px] hidden lg:block">
+                    {/* Added self-start so sticky works correctly */}
+                    <nav className="sticky top-[80px] hidden lg:block self-start">
                         <h3 className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Contents</h3>
                         <div className="flex flex-col gap-1">
                             {SECTIONS.map(s => (
@@ -75,7 +76,8 @@ export default function TermsPage() {
                         </div>
                     </nav>
 
-                    <div className="max-w-[740px]">
+                    {/* Added w-full so it doesn't overflow on mobile */}
+                    <div className="max-w-[740px] w-full">
                         <div className="p-5 rounded-xl mb-8" style={{ background: 'var(--accent-light)', border: '1px solid var(--accent-border)' }}>
                             <p className="text-[14px] leading-relaxed" style={{ color: 'var(--accent)' }}>
                                 Please read these Terms of Service carefully before using Scholar&apos;s Den. By using our platform, you agree to be bound by these terms.

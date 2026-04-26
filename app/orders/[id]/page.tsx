@@ -17,7 +17,7 @@ export default function OrderDetailsPage() {
 
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-8 md:py-12" style={{ padding: '50px 10px 50px 10px' }}>
 
                 <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
                     <div>

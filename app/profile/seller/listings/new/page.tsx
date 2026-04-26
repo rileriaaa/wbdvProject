@@ -137,7 +137,7 @@ function AddEditProductContent() {
                                 style={{ background: 'var(--bg-muted)', border: '2px dashed var(--border)' }}
                             >
                                 <span className="text-2xl mb-1">📷</span>
-                                <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>Add Photo</span>
+                                <span className="text-[8px]" style={{ color: 'var(--text-muted)' }}>Add Photo</span>
                             </div>
                         ))}
                     </div>

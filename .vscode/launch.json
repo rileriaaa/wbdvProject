@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/rIleria/Documents/GitHub/wbdvproject/app/(comps)",
-      "program": "c:/Users/rIleria/Documents/GitHub/wbdvproject/app/(comps)/build/Debug/outDebug",
+      "cwd": "c:/Users/rIleria/Documents/GitHub/wbdvproject/app/messages/[id]",
+      "program": "c:/Users/rIleria/Documents/GitHub/wbdvproject/app/messages/[id]/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

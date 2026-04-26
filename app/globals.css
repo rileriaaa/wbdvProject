@@ -2,7 +2,6 @@
 
 @import "tailwindcss";
 
-/* ── TAILWIND V4 THEME CONFIG ────────────────────────────────────────────── */
 @theme {
   --font-sans:  'DM Sans', sans-serif;
   --font-serif: 'Instrument Serif', serif;
@@ -21,7 +20,24 @@
   --radius-sd: 10px;
 }
 
-/* ── DESIGN TOKENS ───────────────────────────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.animated-credit {
+    background-size: 200% auto !important;
+    animation: gradientSlide 2s linear infinite;
+}
+
+@keyframes gradientSlide {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
 :root {
   --bg:            #ffffff;
   --bg-subtle:     #f7f7f6;

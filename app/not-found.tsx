@@ -12,7 +12,7 @@ const SUGGESTIONS = [
 export default function NotFound() {
     return (
         <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-            <div className="section-sd py-20 md:py-28" style={{ padding: '50px 0 50px 0' }}>
+            <div className="section-sd py-20 md:py-28" style={{ padding: '50px 10px 50px 10px' }}>
 
                 <div className="text-center">
                     <div

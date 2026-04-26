@@ -86,28 +86,29 @@ export default function CartPage() {
 
                     <div className="flex flex-col gap-4">
 
-                        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 pb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
+                        {/* <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 pb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
                             <span>Product</span>
                             <span className="text-center">Price</span>
                             <span className="text-center">Quantity</span>
                             <span className="text-center">Subtotal</span>
                             <span />
-                        </div>
+                        </div> */}
 
                         {cart.map(item => (
                             <div
                                 key={item.id}
-                                className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 items-center py-4"
+                                className="py-4"
                                 style={{ borderBottom: '1px solid var(--border)' }}
                             >
-                                <div className="flex items-center gap-3">
+                                {/* Top row: image + info + remove (all screen sizes) */}
+                                <div className="flex items-start gap-3">
                                     <div
                                         className="w-16 h-16 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"
                                         style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}
                                     >
                                         📗
                                     </div>
-                                    <div className="min-w-0">
+                                    <div className="flex-1 min-w-0">
                                         <Link href={`/item/${item.id}`} className="text-[14px] font-semibold line-clamp-2" style={{ color: 'var(--text)', textDecoration: 'none' }}>
                                             {item.title}
                                         </Link>
@@ -124,27 +125,36 @@ export default function CartPage() {
                                             </button>
                                         </div>
                                     </div>
+                                    {/* ✕ remove — desktop only */}
+                                    <button onClick={() => handleRemove(item.id)} className="hidden md:flex w-7 h-7 items-center justify-center rounded-full text-[12px] flex-shrink-0" style={{ background: 'var(--bg-muted)', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+                                        ✕
+                                    </button>
                                 </div>
 
-                                <div className="text-center text-[14px] font-semibold" style={{ color: 'var(--text)' }}>
-                                    ₱{item.price.toLocaleString()}
-                                </div>
+                                {/* Bottom row: price + qty + subtotal */}
+                                <div className="flex items-center justify-between mt-3 pl-[76px] flex-wrap gap-3">
+                                    {/* Price */}
+                                    <div className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>
+                                        <span className="text-[10px] uppercase tracking-widest block mb-0.5" style={{ color: 'var(--text-muted)' }}>Price</span>
+                                        <span className="font-semibold" style={{ color: 'var(--text)' }}>₱{item.price.toLocaleString()}</span>
+                                    </div>
 
-                                <div className="flex items-center justify-center">
-                                    <div className="flex items-center rounded-lg overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
-                                        <button onClick={() => handleQty(item.id, item.qty - 1)} className="w-8 h-8 flex items-center justify-center text-lg" style={{ background: 'var(--bg-subtle)', border: 'none', cursor: 'pointer', color: 'var(--text)' }}>−</button>
-                                        <span className="w-8 text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>{item.qty}</span>
-                                        <button onClick={() => handleQty(item.id, item.qty + 1)} className="w-8 h-8 flex items-center justify-center text-lg" style={{ background: 'var(--bg-subtle)', border: 'none', cursor: 'pointer', color: 'var(--text)' }}>+</button>
+                                    {/* Qty stepper */}
+                                    <div>
+                                        <span className="text-[10px] uppercase tracking-widest block mb-0.5 text-center" style={{ color: 'var(--text-muted)' }}>Qty</span>
+                                        <div className="flex items-center rounded-lg overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
+                                            <button onClick={() => handleQty(item.id, item.qty - 1)} className="w-8 h-8 flex items-center justify-center text-lg" style={{ background: 'var(--bg-subtle)', border: 'none', cursor: 'pointer', color: 'var(--text)' }}>−</button>
+                                            <span className="w-8 text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>{item.qty}</span>
+                                            <button onClick={() => handleQty(item.id, item.qty + 1)} className="w-8 h-8 flex items-center justify-center text-lg" style={{ background: 'var(--bg-subtle)', border: 'none', cursor: 'pointer', color: 'var(--text)' }}>+</button>
+                                        </div>
+                                    </div>
+
+                                    {/* Subtotal */}
+                                    <div className="text-right">
+                                        <span className="text-[10px] uppercase tracking-widest block mb-0.5" style={{ color: 'var(--text-muted)' }}>Subtotal</span>
+                                        <span className="text-[14px] font-bold" style={{ color: 'var(--text)' }}>₱{(item.price * item.qty).toLocaleString()}</span>
                                     </div>
                                 </div>
-
-                                <div className="text-center text-[14px] font-bold" style={{ color: 'var(--text)' }}>
-                                    ₱{(item.price * item.qty).toLocaleString()}
-                                </div>
-
-                                <button onClick={() => handleRemove(item.id)} className="hidden md:flex w-7 h-7 items-center justify-center rounded-full text-[12px]" style={{ background: 'var(--bg-muted)', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
-                                    ✕
-                                </button>
                             </div>
                         ))}
 

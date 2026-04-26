@@ -39,7 +39,8 @@ export default function ManageListingsPage() {
                 <Link href="/profile/seller/listings/new" className="btn-primary text-[14px]">+ Add New Listing</Link>
             </div>
 
-            <div className="flex items-center gap-1" style={{ borderBottom: '1.5px solid var(--border)' }}>
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide" style={{ borderBottom: '1.5px solid var(--border)' }}>
+
                 {tabs.map(tab => (
                     <button
                         key={tab}
@@ -67,7 +68,9 @@ export default function ManageListingsPage() {
                 </div>
             ) : (
                 <div className="rounded-xl overflow-hidden" style={{ border: '1.5px solid var(--border)' }}>
-                    <div className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-widest" style={{ background: 'var(--bg-subtle)', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
+
+                    {/* Desktop table header — hidden on mobile */}
+                    <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-widest" style={{ background: 'var(--bg-subtle)', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
                         <span>Product</span>
                         <span className="text-center">Price</span>
                         <span className="text-center">Stock</span>
@@ -78,33 +81,47 @@ export default function ManageListingsPage() {
                     {filtered.map((listing, i) => (
                         <div
                             key={listing.id}
-                            className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-4 items-center"
                             style={{ borderBottom: i < filtered.length - 1 ? '1px solid var(--border)' : 'none' }}
                         >
-                            {/* Product */}
-                            <div className="flex items-center gap-3 min-w-0">
-                                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}>📗</div>
-                                <div className="min-w-0">
-                                    <div className="text-[13px] font-semibold truncate" style={{ color: 'var(--text)' }}>{listing.title}</div>
-                                    <div className="text-[11px] capitalize" style={{ color: 'var(--text-muted)' }}>{listing.category}</div>
+                            <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-5 py-4 items-center">
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}>📗</div>
+                                    <div className="min-w-0">
+                                        <div className="text-[13px] font-semibold truncate" style={{ color: 'var(--text)' }}>{listing.title}</div>
+                                        <div className="text-[11px] capitalize" style={{ color: 'var(--text-muted)' }}>{listing.category}</div>
+                                    </div>
+                                </div>
+                                <div className="text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>₱{listing.price.toLocaleString()}</div>
+                                <div className="text-center text-[13px]" style={{ color: listing.stock <= 1 ? '#dc2626' : 'var(--text)' }}>{listing.stock} left</div>
+                                <div className="flex justify-center">
+                                    <span className={`badge-sd ${STATUS_BADGE[listing.listingStatus]}`}>{listing.listingStatus}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Link href={`/profile/seller/listings/new?edit=${listing.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">Edit</Link>
+                                    <button onClick={() => handleDelete(listing.id)} className="btn-ghost text-[11px] py-1 px-3 h-[30px]" style={{ color: '#dc2626' }}>Delete</button>
                                 </div>
                             </div>
 
-                            <div className="text-center text-[13px] font-semibold" style={{ color: 'var(--text)' }}>
-                                ₱{listing.price.toLocaleString()}
-                            </div>
-
-                            <div className="text-center text-[13px]" style={{ color: listing.stock <= 1 ? '#dc2626' : 'var(--text)' }}>
-                                {listing.stock} left
-                            </div>
-
-                            <div className="flex justify-center">
-                                <span className={`badge-sd ${STATUS_BADGE[listing.listingStatus]}`}>{listing.listingStatus}</span>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <Link href={`/profile/seller/listings/new?edit=${listing.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">Edit</Link>
-                                <button onClick={() => handleDelete(listing.id)} className="btn-ghost text-[11px] py-1 px-3 h-[30px]" style={{ color: '#dc2626' }}>Delete</button>
+                            {/* ── Mobile card ── */}
+                            <div className="flex md:hidden items-start gap-3 px-4 py-4">
+                                <div className="w-11 h-11 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: 'var(--bg-muted)', border: '1px solid var(--border)' }}>📗</div>
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-start justify-between gap-2">
+                                        <div className="min-w-0">
+                                            <div className="text-[13px] font-semibold truncate" style={{ color: 'var(--text)' }}>{listing.title}</div>
+                                            <div className="text-[11px] capitalize mt-0.5" style={{ color: 'var(--text-muted)' }}>{listing.category}</div>
+                                        </div>
+                                        <span className={`badge-sd ${STATUS_BADGE[listing.listingStatus]} flex-shrink-0`}>{listing.listingStatus}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 mt-2">
+                                        <span className="text-[13px] font-bold" style={{ color: 'var(--text)' }}>₱{listing.price.toLocaleString()}</span>
+                                        <span className="text-[11px]" style={{ color: listing.stock <= 1 ? '#dc2626' : 'var(--text-muted)' }}>{listing.stock} left</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 mt-3">
+                                        <Link href={`/profile/seller/listings/new?edit=${listing.id}`} className="btn-secondary text-[11px] py-1 px-3 h-[30px]">Edit</Link>
+                                        <button onClick={() => handleDelete(listing.id)} className="btn-ghost text-[11px] py-1 px-3 h-[30px]" style={{ color: '#dc2626' }}>Delete</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}

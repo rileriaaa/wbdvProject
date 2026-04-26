@@ -91,7 +91,7 @@ export default function Navbar() {
     const megaMenuColumns = [
         {
             heading: "End of Season Sale",
-            links: [{ label: "Extra 30% off", href: "/sale" }],
+            links: [{ label: "Extra 30% off", href: "/browse" }],
         },
         {
             heading: "Featured",
@@ -372,8 +372,81 @@ export default function Navbar() {
                     borderTop: '1px solid var(--border)',
                     boxShadow: 'var(--shadow-lg)',
                     zIndex: 49,
+                    maxHeight: 'calc(100vh - 60px)',
+                    overflowY: 'auto',
                 }}>
-                    <div className="section-sd" style={{ padding: '28px 32px 32px' }}>
+                    {/* ── Mobile: stacked list ── */}
+                    <div className="lg:hidden flex flex-col">
+                        {/* Search bar */}
+                        <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
+                            <form onSubmit={handleSearch}>
+                                <div className="relative w-full">
+                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-muted)' }}>🔍</span>
+                                    <input
+                                        type="text"
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                        placeholder="Search books, supplies…"
+                                        className="input-sd !pl-10 pr-4 h-[38px] text-[13px] w-full"
+                                        style={{ borderRadius: '8px' }}
+                                    />
+                                </div>
+                            </form>
+                        </div>
+
+                        {/* Nav links */}
+                        <div style={{ borderBottom: '1px solid var(--border)' }}>
+                            {navLinks.map(link => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="flex items-center px-4 py-3 text-[14px] font-medium"
+                                    style={{
+                                        color: isActive(link.href) ? 'var(--accent)' : 'var(--text)',
+                                        textDecoration: 'none',
+                                        borderBottom: '1px solid var(--border)',
+                                    }}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Mega menu columns stacked */}
+                        {megaMenuColumns.map((col, i) => (
+                            <div key={col.heading} style={{ borderBottom: i < megaMenuColumns.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                                <p className="px-4 pt-3 pb-1 text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                                    {col.heading}
+                                </p>
+                                {col.links.map(link => (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        className="flex items-center px-4 py-2.5 text-[13px]"
+                                        style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                                <div className="pb-2" />
+                            </div>
+                        ))}
+
+                        {/* Theme toggle row */}
+                        <div style={{ borderTop: '1px solid var(--border)' }}>
+                            <button
+                                onClick={handleToggleTheme}
+                                className="flex items-center gap-3 px-4 py-3 w-full text-[13px]"
+                                style={{ color: 'var(--text-secondary)', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                            >
+                                <span>{theme === 'dark' ? '☀️' : '🌙'}</span>
+                                <span>{theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* ── Desktop: original mega menu grid ── */}
+                    <div className="hidden lg:block section-sd" style={{ padding: '28px 32px 32px' }}>
                         <div style={{
                             display: 'grid',
                             gridTemplateColumns: `repeat(${megaMenuColumns.length}, minmax(0, 1fr))`,
@@ -391,7 +464,7 @@ export default function Navbar() {
                                     </p>
                                     {col.links.map(link => (
                                         <Link
-                                            // key={link.href}
+                                            key={link.label}
                                             href={link.href}
                                             style={{
                                                 display: 'block',

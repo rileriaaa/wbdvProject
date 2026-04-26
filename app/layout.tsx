@@ -3,6 +3,7 @@ import Script from 'next/script'
 import './globals.css'
 import Navbar from './(comps)/navbarr'
 import Footer from './(comps)/footerr'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: "Scholar's Den",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Navbar />
         <main style={{ minHeight: 'calc(100vh - 60px - 320px)' }}>
           {children}
+          <Toaster position="bottom-right" />
         </main>
         <Footer />
       </body>

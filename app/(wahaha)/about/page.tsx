@@ -1,3 +1,7 @@
+'use client'
+import { useState, useEffect } from 'react'
+import { getUser } from '../../(lib)/storage'
+import type { User } from '@/types'
 import Link from 'next/link'
 
 const STATS = [
@@ -13,7 +17,7 @@ const VALUES = [
     { icon: '⚡', title: 'Speed', desc: 'Fast listings, quick transactions, same-day campus pickup.' },
 ]
 const TEAM = [
-    { name: 'Ashley James Naval', role: 'Lead Developer, UI/UX Architect, Information Architect, Content Manager' },
+    { name: 'Ashley James Naval', role: 'App Developer, UI/UX Architect, Information Architect, Content Manager' },
     { name: 'Chris Hular', role: 'UI/UX Designer' },
     { name: 'Kurt Angelo Aves', role: 'UI/UX Designer' },
     { name: 'Blu Oloquina', role: 'UI/UX Designer' },
@@ -23,6 +27,10 @@ const TEAM = [
 const STACK = ['React.js', 'Next.js', 'TypeScript', 'TailwindCSS', 'Vercel']
 
 export default function AboutPage() {
+
+    const [user, setUser] = useState<User | null>(null)
+    useEffect(() => { setUser(getUser()) }, [])
+
     return (
         <div style={{ background: 'var(--bg)' }}>
 
@@ -120,12 +128,29 @@ export default function AboutPage() {
 
             <section className="py-16 md:py-20" style={{ background: 'var(--dark-surface)' }}>
                 <div className="section-sd text-center">
-                    <h2 className="text-[28px] md:text-[36px] font-bold mb-4 text-white">Ready to start saving?</h2>
-                    <p className="text-[15px] mb-8" style={{ color: 'rgba(255,255,255,0.5)' }}>Join the student marketplace today.</p>
-                    <div className="flex items-center justify-center gap-3 flex-wrap">
-                        <Link href="/signup" className="btn-primary text-[14px] py-3 px-8">Create Free Account</Link>
-                        <Link href="/browse" className="btn-secondary text-[14px] py-3 px-8" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}>Browse Listings</Link>
-                    </div>
+                    {user ? (
+                        <>
+                            <h2 className="text-[28px] md:text-[36px] font-bold mb-4 text-white">
+                                Welcome back, {user.firstName}! 👋
+                            </h2>
+                            <p className="text-[15px] mb-8" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                                Ready to find your next deal or list something new?
+                            </p>
+                            <div className="flex items-center justify-center gap-3 flex-wrap">
+                                <Link href="/browse" className="btn-primary text-[14px] py-3 px-8">Browse Listings</Link>
+                                <Link href="/profile/seller/listings/new" className="btn-secondary text-[14px] py-3 px-8" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}>Sell an Item</Link>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-[28px] md:text-[36px] font-bold mb-4 text-white">Ready to start saving?</h2>
+                            <p className="text-[15px] mb-8" style={{ color: 'rgba(255,255,255,0.5)' }}>Join the student marketplace today.</p>
+                            <div className="flex items-center justify-center gap-3 flex-wrap">
+                                <Link href="/signup" className="btn-primary text-[14px] py-3 px-8">Create Free Account</Link>
+                                <Link href="/browse" className="btn-secondary text-[14px] py-3 px-8" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}>Browse Listings</Link>
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
         </div>

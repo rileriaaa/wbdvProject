@@ -64,6 +64,7 @@ function MessagesContent() {
     const [activeConvo, setActiveConvo] = useState<Conversation>(CONVERSATIONS[0])
     const [input, setInput] = useState('')
     const [messages, setMessages] = useState<Message[]>(CONVERSATIONS[0].messages)
+    const [mobileView, setMobileView] = useState<'list' | 'chat'>('list') // 👈 added
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => { setUser(getUser()) }, [])
@@ -72,6 +73,7 @@ function MessagesContent() {
     function selectConvo(c: Conversation) {
         setActiveConvo(c)
         setMessages(c.messages)
+        setMobileView('chat') // 👈 added
     }
 
     function sendMessage(e: React.FormEvent) {
@@ -85,8 +87,9 @@ function MessagesContent() {
     return (
         <div style={{ background: 'var(--bg)', height: 'calc(100vh - 60px)', display: 'flex', overflow: 'hidden' }}>
 
+            {/* Sidebar — always visible on md+, on mobile only when mobileView === 'list' */}
             <div
-                className="w-[300px] flex-shrink-0 flex flex-col hidden md:flex"
+                className={`w-full md:w-[300px] flex-shrink-0 flex-col ${mobileView === 'list' ? 'flex' : 'hidden'} md:flex`}
                 style={{ borderRight: '1px solid var(--border)' }}
             >
                 <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
@@ -136,8 +139,17 @@ function MessagesContent() {
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col min-w-0">
+            {/* Chat panel — always visible on md+, on mobile only when mobileView === 'chat' */}
+            <div className={`flex-1 flex-col min-w-0 ${mobileView === 'chat' ? 'flex' : 'hidden'} md:flex`}>
                 <div className="flex items-center gap-3 px-5 py-3 flex-shrink-0" style={{ borderBottom: '1px solid var(--border)' }}>
+                    {/* Back button — mobile only */}
+                    <button
+                        onClick={() => setMobileView('list')}
+                        className="md:hidden btn-ghost w-8 h-8 p-0 flex items-center justify-center text-[18px] flex-shrink-0"
+                        aria-label="Back to conversations"
+                    >
+                        ←
+                    </button>
                     <div className="w-9 h-9 rounded-full flex items-center justify-center text-[11px] font-bold text-white" style={{ background: 'var(--accent)' }}>
                         {activeConvo.initials}
                     </div>
@@ -201,7 +213,6 @@ function MessagesContent() {
         </div>
     )
 }
-
 // ── Suspense wrapper — required for useSearchParams() ────────────────────
 export default function MessagesPage() {
     return (
