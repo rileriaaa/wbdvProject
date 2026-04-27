@@ -5,6 +5,7 @@ import { getUser, setUser as saveUser, getWishlist } from '../(lib)/storage'
 import { PRODUCTS } from '../(lib)/mockdata'
 import ProductCard from '../(comps)/productCard'
 import type { User, Product } from '@/types'
+import toast from 'react-hot-toast'
 
 export default function MyProfilePage() {
     const [user, setUser] = useState<User | null>(null)
@@ -27,11 +28,20 @@ export default function MyProfilePage() {
     function handleSave(e: React.FormEvent) {
         e.preventDefault()
         if (!user) return
-        const updated: User = { ...user, ...form }
-        saveUser(updated)
-        setUser(updated)
-        setSaved(true)
-        setTimeout(() => setSaved(false), 2000)
+
+        const toastId = toast.loading('Saving details...')
+
+        setTimeout(() => {
+            const updated: User = { ...user, ...form }
+            saveUser(updated)
+            setUser(updated)
+            setSaved(true)
+            setTimeout(() => setSaved(false), 2000)
+            toast.success('Profile saved!', {
+                id: toastId,
+                duration: 2000,
+            })
+        }, 600)
     }
 
     const wishlistProducts = (PRODUCTS as Product[]).filter(p => wishlist.some(w => w.id === p.id)).slice(0, 5)

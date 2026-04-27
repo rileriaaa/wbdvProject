@@ -31,7 +31,7 @@ export default function RootLayout({
         <Navbar />
         <main style={{ minHeight: 'calc(100vh - 60px - 320px)' }}>
           {children}
-          <Toaster position="bottom-right" />
+          <Toaster position="top-center" />
         </main>
         <Footer />
       </body>

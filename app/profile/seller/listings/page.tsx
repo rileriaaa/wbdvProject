@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { PRODUCTS } from '../../../(lib)/mockdata'
 import type { Product } from '@/types'
+import toast from 'react-hot-toast'
 
 type ListingTab = 'All' | 'Active' | 'Sold' | 'Inactive'
 
@@ -20,7 +21,11 @@ export default function ManageListingsPage() {
     const filtered = listings.filter(l => activeTab === 'All' || l.listingStatus === activeTab)
 
     function handleDelete(id: string) {
-        setListings(prev => prev.filter(l => l.id !== id))
+        const toastId = toast.loading('Deleting listing...')
+        setTimeout(() => {
+            setListings(prev => prev.filter(l => l.id !== id))
+            toast.success('Listing deleted!', { id: toastId, duration: 2000 })
+        }, 600)
     }
 
     const STATUS_BADGE: Record<string, string> = {

@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { CategoryId, Condition } from '@/types'
+import toast from 'react-hot-toast'
 
 interface ProductForm {
     title: string
@@ -58,17 +59,21 @@ function AddEditProductContent() {
 
     async function handlePublish() {
         if (!validate()) return
+        const toastId = toast.loading("Publishing Listing...")
         setLoading(true)
         await new Promise(r => setTimeout(r, 900))
         setLoading(false)
-        router.push('/seller/listings')
+        toast.success('Listing Published!', { id: toastId, duration: 2000 })
+        router.push('/profile/seller/listings')
     }
 
     async function handleDraft() {
+        const toastId = toast.loading("Saving draft...")
         setLoading(true)
         await new Promise(r => setTimeout(r, 600))
         setLoading(false)
-        router.push('/seller/listings')
+        toast.success('Draft Saved', { id: toastId, duration: 2000 })
+        router.push('/profile/seller/listings')
     }
 
     const label = (text: string) => (

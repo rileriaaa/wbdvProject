@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { removeUser } from '../../(lib)/storage'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export default function AccountSettingsPage() {
     const router = useRouter()
@@ -13,8 +14,12 @@ export default function AccountSettingsPage() {
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
     function handleSaveNotifs() {
-        setSaved('notifs')
-        setTimeout(() => setSaved(null), 2000)
+        const toastId = toast.loading('Saving notifications...')
+        setTimeout(() => {
+            setSaved('notifs')
+            setTimeout(() => setSaved(null), 2000)
+            toast.success('Notification preferences saved!', { id: toastId, duration: 2000 })
+        }, 600)
     }
 
     function handleChangePassword(e: React.FormEvent) {
@@ -23,19 +28,30 @@ export default function AccountSettingsPage() {
         if (pwForm.newPw.length < 8) { setPwError('Min. 8 characters'); return }
         if (pwForm.newPw !== pwForm.confirm) { setPwError('Passwords do not match'); return }
         setPwError('')
-        setSaved('password')
-        setPwForm({ current: '', newPw: '', confirm: '' })
-        setTimeout(() => setSaved(null), 2000)
+
+        const toastId = toast.loading('Updating password...')
+        setTimeout(() => {
+            setSaved('password')
+            setPwForm({ current: '', newPw: '', confirm: '' })
+            setTimeout(() => setSaved(null), 2000)
+            toast.success('Password updated!', { id: toastId, duration: 2000 })
+        }, 600)
     }
 
     function handleLogout() {
-        removeUser()
-        router.push('/')
+        toast.loading('Logging out...')
+        setTimeout(() => {
+            removeUser()
+            router.push('/')
+        }, 800)
     }
 
     function handleDeleteAccount() {
-        removeUser()
-        router.push('/')
+        toast.error('Account deleted.', { duration: 2000 })
+        setTimeout(() => {
+            removeUser()
+            router.push('/')
+        }, 800)
     }
 
     const Toggle = ({ on, onToggle }: { on: boolean; onToggle: () => void }) => (

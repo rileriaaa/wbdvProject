@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { getCart, clearCart } from '../(lib)/storage'
 import type { CartItem } from '@/types'
+import toast from 'react-hot-toast'
 
 type Step = 1 | 2 | 3
 
@@ -73,10 +74,12 @@ export default function CheckoutPage() {
     }
 
     async function handlePlaceOrder() {
+        const toastId = toast.loading("Placing Order...")
         setLoading(true)
         await new Promise(r => setTimeout(r, 1200))
         clearCart()
         setLoading(false)
+        toast.success("Order Placed!", { id: toastId, duration: 2000 })
         router.push('/order/confirm')
     }
 

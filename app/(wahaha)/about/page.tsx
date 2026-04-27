@@ -17,7 +17,7 @@ const VALUES = [
     { icon: '⚡', title: 'Speed', desc: 'Fast listings, quick transactions, same-day campus pickup.' },
 ]
 const TEAM = [
-    { name: 'Ashley James Naval', role: 'App Developer, UI/UX Architect, Information Architect, Content Manager' },
+    { name: 'Ashley James Naval', role: 'Lead App Developer, UI/UX Architect, Information Architect, Content Manager' },
     { name: 'Chris Hular', role: 'UI/UX Designer' },
     { name: 'Kurt Angelo Aves', role: 'UI/UX Designer' },
     { name: 'Blu Oloquina', role: 'UI/UX Designer' },

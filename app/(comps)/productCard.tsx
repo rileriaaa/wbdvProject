@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { addToCart, toggleWishlist, isWishlisted, isLoggedIn } from '../(lib)/storage'
 import type { Product } from '@/types'
+import toast from 'react-hot-toast'
 
 interface ProductCardProps {
     product: Product
@@ -45,10 +46,22 @@ export default function ProductCard({ product, onCartUpdate }: ProductCardProps)
             router.push('/login?redirect=/cart')
             return
         }
-        addToCart(product)
-        onCartUpdate?.()
-        setAdded(true)
-        setTimeout(() => setAdded(false), 1500)
+
+        const toastId = toast.loading('Adding to cart...')
+
+        setTimeout(() => {
+            addToCart(product)
+            onCartUpdate?.()
+            setAdded(true)
+            setTimeout(() => setAdded(false), 1500)
+            toast.success(`${product.title} added to cart!`, {
+                position: 'top-center',
+                id: toastId,
+                duration: 2000,
+            })
+        }, 600)
+
+
     }
 
     function handleWishlist(e: React.MouseEvent<HTMLButtonElement>) {
