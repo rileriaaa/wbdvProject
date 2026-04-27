@@ -3,12 +3,21 @@
               WBDV111 | Group 1 | BSCS 1-Y2-2
 ============================================================
 
+ROLES:
+  Team Leader           — Ashley James R. Naval
+  Information Architect — Ashley James R. Naval
+  UI/UX Designer        — Ashley James R. Naval, Chris Hular,
+                          Kurt Angelo Aves, Blu Oloquina
+  Content Manager       — Ashley James R. Naval, Karl Justin Salas,
+                          April Jane Salvador
+  Frontend Developer    — Ashley James R. Naval
+
 ------------------------------------------------------------
 BEFORE THE MEETING
 ------------------------------------------------------------
 - Open the Scholar's Den website on your browser (localhost:3000)
 - Make sure desktop clock/time is visible on screen
-- Start recording (Information Architect handles this)
+- Start recording (Ashley handles this as Information Architect)
 - Everyone should be on camera
 
 ============================================================
@@ -102,18 +111,17 @@ Key features of Scholar's Den include:
 
 [CLOSING]
 "This meeting was organized by myself, Ashley James R. Naval,
-as Team Leader. I will now pass it on to our Information
-Architect, Chris Hular, to discuss the sitemap and wireframes."
+as Team Leader. I will now move on to the Information
+Architecture portion of our presentation."
 
 
 ============================================================
-2. INFORMATION ARCHITECT — Chris Hular
-   (Also handles recording — make sure clock is visible)
+2. INFORMATION ARCHITECT — Ashley James R. Naval
 ============================================================
 
 [OPENING]
-"Thank you, Ashley. I am Chris Hular, the Information Architect
-of Group 1. I am also in charge of recording this meeting.
+"I am also serving as the Information Architect for Group 1,
+and I am in charge of recording this meeting.
 As you can see on screen, today's date and time are visible."
 
 [SITEMAP]
@@ -160,11 +168,12 @@ interactive components like forms, filters, and modals."
 
 [CLOSING]
 "That covers the sitemap and wireframes. I will now pass it
-on to our Content Manager."
+on to our Content Managers."
 
 
 ============================================================
-3. CONTENT MANAGER — Karl Justin Salas & April Jane Salvador
+3. CONTENT MANAGER — Ashley James R. Naval, Karl Justin Salas
+                    & April Jane Salvador
 ============================================================
 
 [OPENING]
@@ -199,7 +208,8 @@ it on to our UI/UX Designers."
 
 
 ============================================================
-4. UI/UX DESIGNER — Kurt Angelo Aves & Blu Oloquina
+4. UI/UX DESIGNER — Ashley James R. Naval, Chris Hular,
+                    Kurt Angelo Aves & Blu Oloquina
 ============================================================
 
 [OPENING]
@@ -254,9 +264,53 @@ All icons used in the interface are emoji-based, requiring
 no external icon library and keeping the bundle size small."
 
 [CLOSING]
-"That covers our design process and mockups. Thank you for
-your time, ma'am/sir. We are open to any questions or
-feedback."
+"That covers our design process and mockups. I will now pass
+it on to our Frontend Developer."
+
+
+============================================================
+5. FRONTEND DEVELOPER — Ashley James R. Naval
+============================================================
+
+[OPENING]
+"Finally, as the Frontend Developer of Group 1, I will walk
+you through the technical implementation of Scholar's Den."
+
+[TECH STACK & IMPLEMENTATION]
+"Scholar's Den was built using Next.js with the App Router,
+TypeScript for type safety, and Tailwind CSS v4 for styling.
+
+Since this is a frontend-only application, all data is managed
+through static JSON files and React state. Key technical
+implementations include:
+
+  • Next.js App Router with file-based routing — pages map
+    directly to their URL path, and dynamic routes like
+    /item/[id] and /seller/[id] handle individual listings
+    and seller profiles
+
+  • Middleware-based route protection — unauthenticated users
+    are automatically redirected to the login page when
+    accessing protected routes like Cart, Messages, and Profile
+
+  • localStorage is used to persist simulated session data
+    such as the logged-in user, cart contents, and wishlist
+    items across page refreshes
+
+  • Dark mode is implemented using Tailwind's dark variant
+    combined with a class toggle on the root element,
+    with a fixed dark surface for hero sections regardless
+    of theme
+
+  • The mobile navigation drawer is implemented as an
+    absolutely-positioned overlay — it slides in from the
+    right without affecting the document layout or pushing
+    page content"
+
+[CLOSING]
+"That concludes the technical overview of Scholar's Den.
+Thank you for your time, ma'am/sir. We are open to any
+questions or feedback."
 
 
 ============================================================
